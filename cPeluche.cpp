@@ -23,6 +23,14 @@ cPeluche:cPeluche(char * name, char *code, char * measure, int tam_cod, int tam_
     if(llenado_peso_relleno(weight_relleno))
 	{
 		std::cout<<"PESO RELLENO LLENADO CON EXITO"<<std::endl;
+        if(llenado_peso_final())
+        {
+           std::cout<<"PESO FINAL LLENADO CON EXITO"<<std::endl;
+        }
+        else
+        {
+            std::cout<<"PESO FINAL NO LLENADO CON EXITO"<<std::endl;
+        }
 	}
 	else
 	{
@@ -31,18 +39,18 @@ cPeluche:cPeluche(char * name, char *code, char * measure, int tam_cod, int tam_
 	if(llenado_precio_relleno(money_relleno))
 	{
 		std::cout<<"PRECIO RELLENO LLENADO CON EXITO"<<std::endl;
+        if(llenado_precio_final())
+        {
+           std::cout<<"PRECIO FINAL LLENADO CON EXITO"<<std::endl;
+        }
+        else
+        {
+            std::cout<<"PRECIO FINAL NO LLENADO CON EXITO"<<std::endl;
+        }
 	}
 	else
 	{
 		std::cout<<"PRECIO RELLENO no LLENO"<<std::endl;
-	}
-	if(llenado_peso_relleno(weight_relleno))
-	{
-		std::cout<<"PESO RELLENO LLENADO CON EXITO"<<std::endl;
-	}
-	else
-	{
-		std::cout<<"PESO RELLENO no LLENO"<<std::endl;
 	}
 
 }
@@ -55,7 +63,7 @@ void cPeluche::llenado_nullptr()
 }
 
 
-bool cPrenda::llenado_peso_relleno(float numero)
+bool cPeluche::llenado_peso_relleno(float numero)
 {
 	if(numero<=0.0)
 	{
@@ -66,7 +74,7 @@ bool cPrenda::llenado_peso_relleno(float numero)
 	return true;
 }
 
-bool cPrenda::llenado_precio_relleno(float numero)
+bool cPeluche::llenado_precio_relleno(float numero)
 {
 	if(numero<=0.0)
 	{
@@ -76,29 +84,31 @@ bool cPrenda::llenado_precio_relleno(float numero)
 	precio_relleno = numero;
 	return true;
 }
-/*
+
 bool cPrenda::llenado_peso_final()
 {
+    float valor = cPrenda::getPeso();
 
-
-    if(numero<=0.0)
+    if(valor<=0.0)
 	{
-		peso_final = -1.0;
-		return false;
+		std::cout<<"Peso unitario cprenda invalido"<<std::endl;
+        return false;
 	}
-	peso_final = numero;
+	peso_final +=valor;
 	return true;
 }
-*/
 
-bool cPrenda::llenado_precio_final(float numero)
+
+bool cPeluche::llenado_precio_final()
 {
-	if(numero<=0.0)
+    float valor = cPrenda::getPrecio_unitario();
+
+    if(valor<=0.0)
 	{
-		precio_final = -1.0;
-		return false;
+		std::cout<<"Precio unitario cprenda invalido"<<std::endl;
+        return false;
 	}
-	precio_final = numero;
+	precio_final +=valor;
 	return true;
 }
 
