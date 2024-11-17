@@ -1,9 +1,9 @@
-#ifndef CPRENDA_HPP
-#define CPRENDA_HPP
+#ifndef CPELUCHE_HPP
+#define CPELUCHE_HPP
 
 #include "cPrenda.hpp"
 
-class cPeluche:public cPrenda()
+class cPeluche:public cPrenda
 {
     public:
         cPeluche();
@@ -11,7 +11,7 @@ class cPeluche:public cPrenda()
 				 int tam_measure,float money, char *relleno, char * relleno_unidad,
                  int tam_relleno, int tam_relleno_unidad, float money_relleno, float
                  money_final, float weight_relleno, float weight_final);
-        cPeluche();
+//        cPeluche();
 
         bool llenado_tipo_relleno();
         bool llenado_unidad_relleno();

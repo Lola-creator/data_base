@@ -2,21 +2,21 @@
 #include "cPrenda.hpp"
 #include <iostream>
 
-cPeluche::cPeluche():cPrenda()
+cPeluche::cPeluche() : cPrenda()
 {
     llenado_nullptr();
-    size_relleno = -1;
+    size_tipo_relleno = -1;
     precio_relleno = -1.0;
     precio_final = -1.0;
     peso_relleno = -1.0;
     peso_final = -1.0;
 }
 
-cPeluche:cPeluche(char * name, char *code, char * measure, int tam_cod, int tam_name,
-				  int tam_measure,float money,/**/ char *relleno, char * relleno_unidad,
+cPeluche::cPeluche(char * name, char *code, char * measure, int tam_cod, int tam_name,
+				  int tam_measure,float money, char *relleno, char * relleno_unidad,
                   int tam_relleno, int tam_relleno_unidad, float money_relleno, float
                   money_final, float weight_relleno, float weight_final)
-                :cPrenda(name, code, measure, tam_cod, tam_name, tam_measure, money)
+        :cPrenda(name, code, measure, tam_cod, tam_name, tam_measure, money)
 {
     llenado_nullptr();
 
@@ -36,6 +36,7 @@ cPeluche:cPeluche(char * name, char *code, char * measure, int tam_cod, int tam_
 	{
 		std::cout<<"PESO RELLENO no LLENO"<<std::endl;
 	}
+
 	if(llenado_precio_relleno(money_relleno))
 	{
 		std::cout<<"PRECIO RELLENO LLENADO CON EXITO"<<std::endl;
@@ -85,7 +86,7 @@ bool cPeluche::llenado_precio_relleno(float numero)
 	return true;
 }
 
-bool cPrenda::llenado_peso_final()
+bool cPeluche::llenado_peso_final()
 {
     float valor = cPrenda::getPeso();
 
@@ -124,7 +125,7 @@ char * cPeluche::getUnidad_relleno()
 
 int cPeluche::getSize_relleno()
 {
-    return size_relleno;
+    return size_tipo_relleno;
 }
 
 float cPeluche::getPrecio_relleno()
