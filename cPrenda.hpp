@@ -6,7 +6,6 @@
 class cPrenda
 {
     public:
-
         cPrenda();//sin parametros
         cPrenda(char * name, char *code, char * measure, int tam_cod, int tam_name,
 				 int tam_mesuare,float money);
@@ -36,7 +35,7 @@ class cPrenda
 
         ~cPrenda();
 
-    private:
+    protected:
         cFecha fecha;
         char * talla;
         char * color;

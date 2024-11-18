@@ -275,6 +275,8 @@ bool cPrenda::llenado_medida(char * medida,int size)
 			copiar(medida, unidad_medida, size_medida);
 			return true;
 		}
+		else
+		{	return false;	}
 	}
 
 	return false;
@@ -288,6 +290,7 @@ bool cPrenda::llenado_size_medida(int size, char * cadena)
 		size = contador(cadena);
 		if(size<=1) // still 0, no se crea nada
 		{
+			size_medida = -1;
 			std::cout<<"CADENA DE LONGITUD 0 INVIABLE"<<std::endl;
 			return false;
 		}
@@ -304,6 +307,7 @@ bool cPrenda::llenado_size_color(int size, char * cadena)
 		size = contador(cadena);
 		if(size<=1)// still 0, no se crea nada
 		{
+			size_color = -1;
 			std::cout<<"CADENA DE LONGITUD 0 INVIABLE"<<std::endl;
 			return false;
 		}
@@ -320,6 +324,7 @@ bool cPrenda::llenado_size_talla(int size, char * cadena)
 		size = contador(cadena);
 		if(size<=1) // still 0, no se crea nada
 		{
+			size_talla = -1;
 			std::cout<<"CADENA DE LONGITUD 0 INVIABLE"<<std::endl;
 			return false;
 		}
