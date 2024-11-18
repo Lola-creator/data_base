@@ -277,7 +277,7 @@ void cListaPrenda::buscarColor(char * codigo, int * temp)//40
         bool flag = true;
 
         //direccion de memoria
-        cPrenda * direccion = (manyClothes + i);   //manyStorages+i)->codigo;
+        cPrenda * direccion = *(manyClothes + i);   //manyStorages+i)->codigo;
         char *cadena = (*direccion).getColor();
         int tope = (*direccion).getSize_color();
 

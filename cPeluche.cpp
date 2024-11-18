@@ -68,12 +68,94 @@ cPeluche::cPeluche(char * name, char *code, char * measure, int tam_cod, int tam
 
 }
 
+cPeluche::cPeluche(const cPeluche &obj)
+{
+    llenado_nullptr();
+
+	if(asignar_valores(&obj)) {
+		std::cout << "SE LOGRO" << std::endl;
+	} else {
+		std::cout << "NO SE LOGRO" << std::endl;
+	}
+
+	std::cout << "CONSTRUCTOR DE COPIA" << std::endl;
+}
+
+cPeluche& cPeluche::operator=(const cPeluche &obj)
+{
+	if(&obj != this) {
+		if(asignar_valores(&obj)) {  // Pasamos la dirección de `obj` para cumplir con el tipo
+			std::cout << "SE LOGRO" << std::endl;
+		} else {
+			std::cout << "NO SE LOGRO" << std::endl;
+		}
+	} else {
+		std::cout << "NO SE LOGRO - no copia de si mismo" << std::endl;
+	}
+
+	std::cout << "SOBRECARGA DE OPERADOR" << std::endl;
+	return *this;//devolver la referencia
+
+}
+
+bool cPeluche::asignar_valores(const cPeluche &obj)
+{
+    bool flag = true;
+	fecha = (*obj).fecha;
+	cPrenda::fecha.actualizarFecha();
+
+    if(llenado_unidad_relleno(*(obj).unidad_relleno, *(obj).size_relleno_unidad))
+    {
+        std::cout<<"UNIDAD PESO RELLENO LLENADO CON EXITO"<<std::endl;
+    }
+    else
+    {
+        std::cout<<"UNIDAD PESO RELLENO LLENADO CON EXITO"<<std::endl;
+        flag = false;
+    }
+
+    if(llenado_peso_relleno(*(obj).peso_relleno))
+    {
+        std::cout<<"PESO RELLENO LLENADO CON EXITO"<<std::endl;
+        if(llenado_peso_final())
+        {
+           std::cout<<"PESO FINAL LLENADO CON EXITO"<<std::endl;
+        }
+        else
+        {
+            std::cout<<"PESO FINAL NO LLENADO CON EXITO"<<std::endl;
+        }
+    }
+    else
+    {
+        std::cout<<"PESO RELLENO no LLENO"<<std::endl;
+    }
+
+    if(llenado_precio_relleno(*(obj).precio_relleno))
+    {
+        std::cout<<"PRECIO RELLENO LLENADO CON EXITO"<<std::endl;
+        if(llenado_precio_final())
+        {
+           std::cout<<"PRECIO FINAL LLENADO CON EXITO"<<std::endl;
+        }
+        else
+        {
+            std::cout<<"PRECIO FINAL NO LLENADO CON EXITO"<<std::endl;
+        }
+    }
+    else
+    {
+        std::cout<<"PRECIO RELLENO no LLENO"<<std::endl;
+    }
+
+    return flag;
+
+}
 
 void cPeluche::llenado_nullptr()
 {
     unidad_relleno = nullptr;
 }
-
 
 bool cPeluche::llenado_unidad_relleno(char * cadena, int size)
 {
@@ -195,4 +277,5 @@ float cPeluche::getPrecio_final()
 cPeluche::~cPeluche()
 {
     cPrenda::~cPrenda();
+    cPreda::liberar(&unidad_relleno);
 }

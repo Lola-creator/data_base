@@ -11,7 +11,8 @@ class cPeluche:public cPrenda
                    int tam_measure,float money, char * relleno_unidad,
                    int tam_relleno_unidad, float money_relleno, float
                    money_final, float weight_relleno, float weight_final);
-//        cPeluche();
+        cPeluche(const cPeluche &obj);
+        cPeluche& operator=(const cPeluche &obj);
 
         bool llenado_unidad_relleno(char * cadena, int size= 0);
         bool llenado_size_unidad_relleno(int size, char * cadena = nullptr);
@@ -45,10 +46,7 @@ class cPeluche:public cPrenda
 
         void llenado_nullptr();
 
-        bool asignarValores(const cPeluche *obj);
-
-        void crear_memoria(int tam, char ** destino);
-        void liberar(char **target);
+        bool asignar_valores(const cPeluche *obj);
 
 };
 
