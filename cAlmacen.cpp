@@ -303,12 +303,12 @@ bool cAlmacen::llenado_codigo(char *code, int size)
 	
 }
 
-char * cAlmacen::getNombre()
+const char * cAlmacen::getNombre()
 {
 	return nombre;
 }
 
-char * cAlmacen::getCodigo()
+const char * cAlmacen::getCodigo()
 {
 	return codigo;
 }
@@ -332,7 +332,7 @@ void cAlmacen::generar_cadena_fecha()
 
 }
 
-char * cAlmacen::getFecha()
+const char * cAlmacen::getFecha()
 {
 	generar_cadena_fecha();
 	return cadena_fecha;

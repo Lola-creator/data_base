@@ -249,7 +249,7 @@ bool cPeluche::llenado_precio_final()
 	return true;
 }
 
-char * cPeluche::getUnidad_relleno()
+const char * cPeluche::getUnidad_relleno()
 {
     return unidad_relleno;
 }

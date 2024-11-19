@@ -23,9 +23,9 @@ class cCliente
 		bool llenado_size_cod(int size, char * cadena = nullptr);
 		void llenado_fecha();
 
-		char * getFecha();
-		char * getNombre();
-		char * getCodigo();
+		const char * getFecha();
+		const char * getNombre();
+		const char * getCodigo();
 		int getSize_nom();
 		int getSize_cod();
 

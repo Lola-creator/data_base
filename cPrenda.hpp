@@ -23,10 +23,10 @@ class cPrenda
 		bool llenado_size_talla(int size, char * cadena = nullptr);
 		void llenado_fecha();
 
-        char * getFecha();
-		char * getColor();
-		char * getTalla();
-        char * getMedida();
+        const char * getFecha();
+		const char * getColor();
+		const char * getTalla();
+        const char * getMedida();
 		int getSize_color();
         int getSize_medida();
 		int getSize_talla();

@@ -108,7 +108,7 @@ cAlmacen* cListaAlmacen::getStorage()
     return manyStorages;
 }
 
-char* cListaAlmacen::getCodigo()
+const char* cListaAlmacen::getCodigo()
 {
     return codigo;
 }

@@ -166,12 +166,12 @@ cPrenda* cListaPrenda::getStorage()
 {
     return manyClothes;
 }
-char* cListaPrenda::getMaterial()
+const char* cListaPrenda::getMaterial()
 {
     return material;
 }
 
-char* cListaPrenda::getCodigo()
+const char* cListaPrenda::getCodigo()
 {
     return codigo;
 }

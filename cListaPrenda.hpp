@@ -19,8 +19,8 @@ class cListaPrenda
         bool llenado_precio_total();
 
         cPrenda * getStorage();
-        char* getCodigo();
-        char* getMaterial();
+        const char* getCodigo();
+        const char* getMaterial();
         int getSize();
         int getSize_code();
         int getSize_material();

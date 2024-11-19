@@ -15,7 +15,7 @@ class cListaAlmacen
         bool llenado_almacen(cAlmacen *nuevo, int value);
 
         cAlmacen * getStorage();
-        char* getCodigo();
+        const char* getCodigo();
         int getSize();
         int getSize_code();
 

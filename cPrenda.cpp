@@ -376,17 +376,17 @@ bool cPrenda::llenado_talla(char *code, int size)
 
 }
 
-char * cPrenda::getColor()
+const char * cPrenda::getColor()
 {
 	return color;
 }
 
-char * cPrenda::getTalla()
+const char * cPrenda::getTalla()
 {
 	return talla;
 }
 
-char * cPrenda::getFecha()
+const char * cPrenda::getFecha()
 {
     if(cadena_fecha != nullptr)
     {
@@ -406,7 +406,7 @@ char * cPrenda::getFecha()
     return cadena_fecha;
 }
 
-char  *cPrenda::getMedida()
+const char  *cPrenda::getMedida()
 {
 	return unidad_medida;
 }
@@ -473,9 +473,6 @@ void cPrenda::liberar(char **target)
         *target = nullptr; // Opcional: poner el puntero a nullptr para evitar accesos futuros
     }
 }
-
-
-
 
 cPrenda::~cPrenda()
 {

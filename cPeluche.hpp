@@ -22,7 +22,7 @@ class cPeluche:public cPrenda
         bool llenado_precio_final();
         bool llenado_peso_final();
 
-		char * getUnidad_relleno();
+		const char * getUnidad_relleno();
         int getSize_unidad_relleno();
 
         float getPrecio_relleno();

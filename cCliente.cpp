@@ -299,17 +299,17 @@ bool cCliente::llenado_codigo(char *code, int size)
 
 }
 
-char * cCliente::getNombre()
+const char * cCliente::getNombre()
 {
 	return nombre;
 }
 
-char * cCliente::getCodigo()
+const char * cCliente::getCodigo()
 {
 	return codigo;
 }
 
-char * cCliente::getFecha()
+const char * cCliente::getFecha()
 {
     if(cadena_fecha != nullptr)
     {
