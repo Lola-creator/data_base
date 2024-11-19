@@ -45,8 +45,79 @@ cAccesorio::cAccesorio(char * name, char *code, char * measure, int tam_cod, int
 		std::cout<<"PRECIO DE LA BASE NO LLENADO CON EXITO"<<std::endl;
 	}
 	
-	
 }
+
+cAccesorio::cAccesorio(const cAccesorio &obj) : cPrenda(obj)
+{
+    llenado_nullptr();
+
+	if(asignar_valores(obj)) {
+		std::cout << "SE LOGRO" << std::endl;
+	} else {
+		std::cout << "NO SE LOGRO" << std::endl;
+	}
+
+	std::cout << "CONSTRUCTOR DE COPIA" << std::endl;
+}
+
+cAccesorio& cAccesorio::operator=(const cAccesorio &obj)
+{
+	if(&obj != this) {
+        cPrenda::operator=(obj);
+
+		if(asignar_valores(obj)) {  // Pasamos la dirección de `obj` para cumplir con el tipo
+			std::cout << "SE LOGRO" << std::endl;
+		} else {
+			std::cout << "NO SE LOGRO" << std::endl;
+		}
+	} else {
+		std::cout << "NO SE LOGRO - no copia de si mismo" << std::endl;
+	}
+
+	std::cout << "SOBRECARGA DE OPERADOR" << std::endl;
+	return *this;//devolver la referencia
+
+}
+
+
+bool cAccesorio::asignar_valores(const cAccesorio &obj)
+{
+	cPrenda::fecha.actualizarFecha();
+	bool flag = true;
+	fecha = obj.fecha;
+	llenado_nullptr();
+
+	if(llenado_material_base(obj.material_base,obj.size_base))
+	{
+		std::cout<<"MATERIAL BASE LLENADO CON EXITO"<<std::endl;
+	}
+	else
+	{
+		std::cout<<"MATERIAL BASE NO LLENADO CON EXITO"<<std::endl;
+		flag = false;
+	}
+	if(llenado_utilidad(obj.utilidad, obj.size_utilidad))
+	{
+		std::cout<<"UTILIDAD LLENADO CON EXITO"<<std::endl;
+	}
+	else
+	{
+		std::cout<<"UTILIDAD LLENADO NO CON EXITO"<<std::endl;
+		flag = false;
+	}
+
+	if(llenado_precio_base(obj.precio_base))
+	{
+		std::cout<<"PRECIO DE LA BASE LLENADO CON EXITO"<<std::endl;
+	}
+	else
+	{
+		std::cout<<"PRECIO DE LA BASE NO LLENADO CON EXITO"<<std::endl;
+		flag = false;
+	}
+	return flag;
+}
+
 
 void cAccesorio::llenado_nullptr()
 {
@@ -80,8 +151,8 @@ bool cAccesorio::llenado_material_base(char *cadena, int size)
 	cPrenda::fecha.actualizarFecha();
     if(cadena != nullptr)
     {
-        if(unidad_material_base!= nullptr)
-        {   cPrenda::liberar(&unidad_relleno);  }
+        if(material_base!= nullptr)
+        {   cPrenda::liberar(&material_base);  }
 
         if(llenado_size_base(size,cadena))
         {

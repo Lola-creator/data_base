@@ -46,7 +46,7 @@ class cPeluche:public cPrenda
 
         void llenado_nullptr();
 
-        bool asignar_valores(const cPeluche *obj);
+        bool asignar_valores(const cPeluche &obj);
 
 };
 
