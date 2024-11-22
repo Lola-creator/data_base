@@ -6,8 +6,8 @@
 class cPrenda
 {
     public:
-        cPrenda();//sin parametros
-        cPrenda(char * name, char *code, char * measure, int tam_cod, int tam_name,
+        explicit cPrenda();//sin parametros
+        explicit cPrenda(char * name, char *code, char * measure, int tam_cod, int tam_name,
 				 int tam_mesuare,float money);
         cPrenda(const cPrenda &obj);
         cPrenda& operator=(const cPrenda &obj);
@@ -35,6 +35,10 @@ class cPrenda
 
         ~cPrenda();
 
+    private:
+        bool asignarValores(const cPrenda *obj);
+        void asignar_nullptr();
+
     protected:
         cFecha fecha;
         char * talla;
@@ -49,10 +53,8 @@ class cPrenda
         float peso;
 
         void ultimoAcceso();
-		void asignar_nullptr();
 		void llenado_generalFecha();
 
-		bool asignarValores(const cPrenda *obj);
 		void copiar(char *root, char *destino, int tam);
 		int contador(const char *cadena);
 

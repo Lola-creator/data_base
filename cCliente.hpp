@@ -10,7 +10,7 @@ class cCliente
 		~cCliente();//chau todo
 
 		cCliente();
-		cCliente(char *name , char *code , int tam_nom, int tam_cod) ;//
+		explicit cCliente(char *name , char *code , char *direccion, int tam_nom, int tam_cod, int tam_direccion) ;//
 		cCliente(const cCliente &obj);
 		cCliente& operator=(const cCliente &obj);
 
@@ -19,23 +19,31 @@ class cCliente
 
 		bool llenado_nombre(char *name, int size = 0);
 		bool llenado_codigo(char *code, int size = 0);
+		bool llenado_direccion(char *code, int size = 0);
 		bool llenado_size_nom(int size, char * cadena = nullptr);
 		bool llenado_size_cod(int size, char * cadena = nullptr);
+		bool llenado_size_direccion(int size, char * cadena = nullptr);
 		void llenado_fecha();
 
 		const char * getFecha();
 		const char * getNombre();
+		const char * getDireccion();
 		const char * getCodigo();
 		int getSize_nom();
 		int getSize_cod();
+		int getSize_direccion();
 
-	private:
+	protected:
 		cFecha fecha;
 		char *nombre;
 		char *codigo;
 		char *cadena_fecha;
+		char *direccion_envio;
+
 		int size_nom;
+		int size_envio;
 		int size_cod;
+		int size_direccion;
 
 		void ultimoAcceso();
 		void asignar_nullptr();

@@ -8,10 +8,12 @@ cCliente::cCliente()
 	asignar_nullptr();
 	size_nom = -1;
 	size_cod =-1;
+	size_envio = -1;
 	llenado_generalFecha();
 }
 
-cCliente::cCliente(char *name, char *code, int tam_nom, int tam_cod)
+cCliente::cCliente(char *name, char *code, char *direccion,
+				   int tam_nom, int tam_cod, int tam_direccion)
 {
 	asignar_nullptr();
 	llenado_generalFecha();
@@ -33,6 +35,16 @@ cCliente::cCliente(char *name, char *code, int tam_nom, int tam_cod)
 	{	std::cout<<"NOMBRE no LLENADO CON EXITO"<<std::endl;
 		size_nom = -1;
 	}
+
+	if(llenado_direccion(direccion, tam_direccion))
+	{
+		std::cout<<"DIRECCION LLENADO CON EXITO"<<std::endl;
+	}
+	else
+	{	std::cout<<"DIRECCION no LLENADO CON EXITO"<<std::endl;
+		size_nom = -1;
+	}
+
 }
 
 cCliente::cCliente(const cCliente &obj) // Constructor de copia
@@ -88,6 +100,15 @@ bool cCliente::asignarValores(const cCliente *obj)
 	{	std::cout<<"NOMBRE no LLENO"<<std::endl;
 		return false;
 	}
+	if(llenado_direccion((*obj).direccion_envio, (*obj).size_direccion))
+	{
+		std::cout<<"NOMBRE LLENADO CON EXITO"<<std::endl;
+	}
+	else
+	{	std::cout<<"NOMBRE no LLENO"<<std::endl;
+		return false;
+	}
+
 
 	return true;
 
@@ -225,6 +246,24 @@ void cCliente::llenado_fecha()
 	std::cout<<" "<<std::endl;
 }
 
+bool cCliente::llenado_size_direccion(int size, char * cadena)
+{
+	if(size <= 1)//o por deafult o no lo lleno
+	{
+		size = contador(cadena);
+		if(size<=1)// still 0, no se crea nada
+		{
+			size_direccion = -1;
+			std::cout<<"CADENA DE LONGITUD 0 INVIABLE"<<std::endl;
+			return false;
+		}
+	}
+
+	size_direccion = size;
+	return true;
+}
+
+
 bool cCliente::llenado_size_nom(int size, char * cadena)
 {
 	if(size <= 1)//o por deafult o no lo lleno
@@ -232,6 +271,7 @@ bool cCliente::llenado_size_nom(int size, char * cadena)
 		size = contador(cadena);
 		if(size<=1)// still 0, no se crea nada
 		{
+			size_nom = -1;
 			std::cout<<"CADENA DE LONGITUD 0 INVIABLE"<<std::endl;
 			return false;
 		}
@@ -248,6 +288,7 @@ bool cCliente::llenado_size_cod(int size, char * cadena)
 		size = contador(cadena);
 		if(size<=1) // still 0, no se crea nada
 		{
+			size_cod = -1;
 			std::cout<<"CADENA DE LONGITUD 0 INVIABLE"<<std::endl;
 			return false;
 		}
@@ -299,9 +340,36 @@ bool cCliente::llenado_codigo(char *code, int size)
 
 }
 
+bool cCliente::llenado_direccion(char *name, int size)
+{
+	fecha.actualizarFecha();
+
+	if(name != nullptr)//existe, puedes copiar
+	{
+		//si nombre esta ocupado
+		if(direccion_envio != nullptr) //liberar memoria de nombre
+			{  liberar(&direccion_envio); }
+
+		if(llenado_size_nom(size, name))
+		{
+			crear_memoria(size_direccion, &direccion_envio);
+			copiar(name, direccion_envio, size_nom);
+			return true;
+		}
+	}
+	std::cout<< "ERROR AL LLENAR NOMBRE" <<std::endl;
+	return false;
+}
+
+
 const char * cCliente::getNombre()
 {
 	return nombre;
+}
+
+const char *cCliente::getDireccion()
+{
+	return direccion_envio;
 }
 
 const char * cCliente::getCodigo()
@@ -384,4 +452,5 @@ cCliente::~cCliente()
 	liberar(&nombre);
 	liberar(&codigo);
     liberar(&cadena_fecha);
+	liberar(&direccion_envio);
 }

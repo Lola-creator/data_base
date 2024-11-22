@@ -32,11 +32,8 @@ class cPeluche:public cPrenda
 
         ~cPeluche();
 
-
-
     private:
         char *unidad_relleno;
-
         int size_unidad_relleno;
 
         float peso_relleno;
