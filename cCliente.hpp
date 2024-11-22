@@ -10,7 +10,7 @@ class cCliente
 		~cCliente();//chau todo
 
 		cCliente();
-		explicit cCliente(char *name , char *code , char *direccion, int tam_nom, int tam_cod, int tam_direccion) ;//
+		explicit cCliente(char *name , char *code , char *direccion, int tam_nom, int tam_cod, int tam_direccion);//
 		cCliente(const cCliente &obj);
 		cCliente& operator=(const cCliente &obj);
 
