@@ -37,7 +37,7 @@ class cCliente
 		cFecha fecha;
 		char *nombre;
 		char *codigo;
-		char *cadena_fecha;
+		char *cadena_fecha;//revision ultima entrada
 		char *direccion_envio;
 
 		int size_nom;

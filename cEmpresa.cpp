@@ -17,6 +17,7 @@ cEmpresa::cEmpresa(char*razon, char*contact, char*id, char*paper, int tam_razon,
 {
     cCliente::fecha.actualizarFecha();
     llenado_nullptr();
+
     if(llenado_razon_social(razon, tam_razon))
     {
         std::cout<<"UNIDAD PESO RELLENO LLENADO CON EXITO"<<std::endl;
