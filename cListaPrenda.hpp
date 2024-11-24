@@ -55,6 +55,8 @@ class cListaPrenda
 
         void crear_memoria_arrays(int tam, char **destino);
         void liberar_arrays(char **target);
+        void crear_memoria_np(int, cPrenda **);
+        void liberar_memoria_np(cPrenda**);
         virtual void crear_memoria();
         virtual void liberar_memoria();
 };
