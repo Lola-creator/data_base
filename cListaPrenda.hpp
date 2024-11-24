@@ -9,14 +9,14 @@ class cListaPrenda
         cListaPrenda();
         cListaPrenda(cPrenda * nuevo, int tam, char *code, char * source);
 
-        bool llenado_codigo(char *code, int size = 0);
-        bool llenado_almacen(int value);
+        virtual bool llenado_codigo(char *code, int size = 0);
         bool llenado_prenda(cPrenda * nuevo, int value);
         bool llenado_material(char *code, int size = 0);
-        bool llenado_size_cod(int size, char * cadena = nullptr);
+        virtual bool llenado_size_cod(int size, char * cadena = nullptr);
         bool llenado_size_material(int size, char * cadena = nullptr);
-        bool llenado_size(int valor);
-        bool llenado_precio_total();
+
+        virtual bool llenado_size(int valor);
+        virtual bool llenado_precio_total();
 
         cPrenda * getStorage();
         const char* getCodigo();
@@ -31,7 +31,7 @@ class cListaPrenda
         void llenado_nullptr();
 
         bool addContent(cPrenda *nuevo, int add);
-        bool deleteContent(int begin, int end);
+        virtual bool deleteContent(int begin, int end);
 
         void buscarTalla(char * codigo, int * temp);
         void buscarColor(char * codigo, int * temp);
@@ -55,8 +55,8 @@ class cListaPrenda
 
         void crear_memoria_arrays(int tam, char **destino);
         void liberar_arrays(char **target);
-        void crear_memoria(int, cPrenda **target);
-        void liberar_memoria(cPrenda **target);
+        virtual void crear_memoria();
+        virtual void liberar_memoria();
 };
 
 

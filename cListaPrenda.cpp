@@ -396,18 +396,18 @@ void cListaPrenda::crear_memoria_arrays(int tam, char **destino)
 	}
 }
 
-void cListaPrenda::crear_memoria(int tam, cPrenda **destino)
+void cListaPrenda::crear_memoria()
 {
-    if( *destino != nullptr)
-    {   liberar_memoria(destino);    }
+    if( manyClothes!= nullptr)
+    {   liberar_memoria(&manyClothes);    }
 
     if(tam>=1)
     {
-        *destino = new cPrenda[tam];
+        manyClothes= new cPrenda[size_storage];
     }
     else
     {
-        *destino = nullptr;
+        manyClothes = nullptr;
         std::cout<<"size no valid -- no arrange of new memory in manyStorages"<<std::endl;
     }
 
@@ -424,12 +424,12 @@ void cListaPrenda::liberar_arrays(char **target)
         std::cout<<"Already empty!"<<std::endl;
     }
 }
-void cListaPrenda::liberar_memoria(cPrenda **target)
+void cListaPrenda::liberar_memoria()
 {
-    if(*target != nullptr)
+    if(manyClothes != nullptr)
     {
-        delete[] *target;
-        *target = nullptr;
+        delete[] manyClothes;
+        manyClothes = nullptr;
     }
     else
     {
