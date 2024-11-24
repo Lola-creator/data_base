@@ -214,7 +214,7 @@ void cListaPrenda::buscarTalla(char * codigo, int * temp)//40
 
         //direccion de memoria
         cPrenda * direccion = (manyClothes + i);   //manyStorages+i)->codigo;
-        char *cadena = (*direccion).getTalla();
+        const char *cadena = (*direccion).getTalla();
         int tope = (*direccion).getSize_talla();
 
         for(int a =0;a<tope;a++)
@@ -246,7 +246,7 @@ void cListaPrenda::buscarFecha(char * codigo,int fin, int inicio, int* temp)
         bool flag = true;
 
         //direccion de memoria
-        char *direccion = (*(manyClothes + i)).cadena_fecha;   //manyStorages+i)->codigo;
+        const char *direccion = (*(manyClothes + i)).getFecha();   //manyStorages+i)->codigo;
 
         for(int a =0;a<intervalo;a++, inicio++)
         {
@@ -277,8 +277,8 @@ void cListaPrenda::buscarColor(char * codigo, int * temp)//40
         bool flag = true;
 
         //direccion de memoria
-        cPrenda * direccion = *(manyClothes + i);   //manyStorages+i)->codigo;
-        char *cadena = (*direccion).getColor();
+        cPrenda * direccion = (manyClothes + i);   //manyStorages+i)->codigo;
+        const char *cadena = (*direccion).getColor();
         int tope = (*direccion).getSize_color();
 
         for(int a =0;a<tope;a++)
