@@ -18,23 +18,22 @@ class cListaPeluche : public cListaPrenda
         bool llenado_size_maFill(int size, char * cadena = nullptr);
 
         bool llenado_precio_total() override;
+        bool llenado_peso_total() override:
 
         const char* getRelleno();
         int getRelleno_size();
 
         bool addContent(cPrenda *nuevo, int add);
-        bool deleteContent(int begin, int end) override;
+        bool deleteContent(int begin, int end);
 
         ~cListaPeluche() override;
 
     private:
         char * material_fill;
         float precio_total;
-
         int size_material_fill;
 
         void crear_memoria() override;
-
         void llenado_default();
 };
 

@@ -1,6 +1,9 @@
 #include "cPattern.hpp"
+#include "cIntermedio.hpp"
 #include <iostream>
 
+cIntermedio::cIntermedio()
+{}
 
 void cIntermedio::liberar_arrays(char **target)
 {
@@ -50,3 +53,5 @@ int cIntermedio::contador(const char * cadena)
 	}
 	return fin+1;
 }
+
+cIntermedio:: ~cIntermedio(){}

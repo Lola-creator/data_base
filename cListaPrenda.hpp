@@ -3,8 +3,9 @@
 
 #include "cPrenda.hpp"
 #include "cPattern.hpp"
+#include "cIntermedio.hpp"
 
-class cListaPrenda
+class cListaPrenda : public cIntermedio
 {
     public:
         cListaPrenda();
@@ -19,6 +20,7 @@ class cListaPrenda
 
         bool llenado_size(int valor);
         virtual bool llenado_precio_total();
+        virtual bool llenado_peso_total();
 
         cPrenda * getStorage();
         const char* getCodigo();

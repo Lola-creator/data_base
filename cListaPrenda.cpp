@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-cListaPrenda::cListaPrenda()
+cListaPrenda::cListaPrenda() :cIntermedio()
 {
     llenado_nullptr();
     size_storage = -1;
@@ -11,7 +11,8 @@ cListaPrenda::cListaPrenda()
     precio_total = -1.0;
 }
 
-cListaPrenda::cListaPrenda(cPrenda * nuevo, int tam, char *code, char * source)
+cListaPrenda::cListaPrenda(cPrenda * nuevo, int tam, char *code, char * source, int tam_code,int tam_source)
+            :cIntermedio()
 {
     llenado_nullptr();
 
@@ -70,12 +71,12 @@ bool cListaPrenda::llenado_codigo(char *code, int size)
 	{
 		//si nombre esta ocupado
 		if(codigo != nullptr) //liberar memoria de nombre
-			{  liberar_arrays(&codigo); }
+			{  cIntermedio::liberar_arrays(&codigo); }
 
 		if(llenado_size_cod(size, code))
 		{
-			crear_memoria_arrays(size_code, &codigo);
-			copiar(code, codigo, size_code);
+			cIntermedio::crear_memoria_arrays(size_code, &codigo);
+			cIntermedio::copiar(code, codigo, size_code);
 			return true;
 		}
 	}
@@ -104,12 +105,12 @@ bool cListaPrenda::llenado_material(char *code, int size)
 	{
 		//si nombre esta ocupado
 		if(material != nullptr) //liberar memoria de nombre
-			{  liberar_arrays(&material); }
+			{  cIntermedio::liberar_arrays(&material); }
 
 		if(llenado_size_cod(size, code))
 		{
-			crear_memoria_arrays(size_material, &material);
-			copiar(code, material, size_material);
+			cIntermedio::crear_memoria_arrays(size_material, &material);
+			cIntermedio::copiar(code, material, size_material);
 			return true;
 		}
 	}
@@ -135,7 +136,7 @@ bool cListaPrenda::llenado_size_cod(int size, char * cadena)
 {
 	if(size <= 1)//o por deafult o no lo lleno
 	{
-		size = contador(cadena);
+		size = cIntermedio::contador(cadena);
 		if(size<=1) // still 0, no se crea nada
 		{
 			size_code = -1;
@@ -152,7 +153,7 @@ bool cListaPrenda::llenado_size_material(int size, char * cadena)
 {
 	if(size <= 1)//o por deafult o no lo lleno
 	{
-		size = contador(cadena);
+		size = cIntermedio::contador(cadena);
 		if(size<=1) // still 0, no se crea nada
 		{
 			size_material =-1;
@@ -269,6 +270,11 @@ void cListaPrenda::buscarFecha(char * codigo,int fin, int inicio, int* temp)
     {
         std::cout<<"NO MATCHING STRINGS - CODE"<<std::endl;
     }
+}
+
+void cListaPrenda::llenado_peso_total()
+{//conversor de peso de todos el os pesos
+    std::cout<<"wating"<<std::endl;
 }
 
 void cListaPrenda::buscarColor(char * codigo, int * temp)//40
@@ -427,6 +433,6 @@ void cListaPrenda::liberar_memoria()
 cListaPrenda::~cListaPrenda()
 {
     liberar_memoria();
-    liberar_arrays(&codigo);
-    liberar_arrays(&material);
+    cIntermedio::liberar_arrays(&codigo);
+    cIntermedio::liberar_arrays(&material);
 }

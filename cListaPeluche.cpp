@@ -34,12 +34,12 @@ bool cListaPeluche::llenado_maFill(char *code, int size)
 	{
 		//si nombre esta ocupado
 		if(material_fill != nullptr) //liberar memoria de nombre
-			{  cListaPrenda::liberar_arrays(&material_fill); }
+			{  cIntermedio::liberar_arrays(&material_fill); }
 
 		if(llenado_size_material_fill(size, code))
 		{
-			crear_memoria_arrays(size_code, &codigo);
-			copiar(code, codigo, size_code);
+			cIntermedio::crear_memoria_arrays(size_code, &codigo);
+			cIntermedio::copiar(code, codigo, size_code);
 			return true;
 		}
 	}
@@ -51,7 +51,7 @@ bool cListaPeluche::llenado_size_maFill(int size, char * cadena)
 {
     if(size <= 1)//o por deafult o no lo lleno
 	{
-		size = cListaPrenda::contador(cadena);
+		size = cIntermedio::contador(cadena);
 		if(size<=1) // still 0, no se crea nada
 		{
 			size_material_fill = -1;
@@ -90,6 +90,11 @@ void cListaPeluche::crear_memoria()
     }
 }
 
+cListaPeluche::~cListaPeluche()
+{
+    liberar_memoria();
+    cListaPrenda::liberar_arrays(&material_fill);
+}
 
 
 
