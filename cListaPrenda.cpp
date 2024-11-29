@@ -272,9 +272,10 @@ void cListaPrenda::buscarFecha(char * codigo,int fin, int inicio, int* temp)
     }
 }
 
-void cListaPrenda::llenado_peso_total()
+bool cListaPrenda::llenado_peso_total()
 {//conversor de peso de todos el os pesos
     std::cout<<"wating"<<std::endl;
+    return true;
 }
 
 void cListaPrenda::buscarColor(char * codigo, int * temp)//40
@@ -398,7 +399,6 @@ bool cListaPrenda::deleteContent(int begin, int end)//index, 3 a 4, entonce 2 a 
     manyClothes = temp;
     return true;
 }
-
 
 void cListaPrenda::crear_memoria()
 {

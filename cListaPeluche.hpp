@@ -3,6 +3,7 @@
 
 #include "cPrenda.hpp"
 #include "cListaPrenda.hpp"
+#include "cPeluche.hpp"
 #include <iostream>
 
 class cListaPeluche : public cListaPrenda
@@ -11,20 +12,15 @@ class cListaPeluche : public cListaPrenda
         cListaPeluche();
         cListaPeluche(cPrenda * nuevo, int tam, char *code, char * source, char * fill,
                       int tam_code, int tam_source, int tam_fill);
-        cListaPeluche();
 
-        bool llenado_peluche(cPeluche * nuevo, int value);
         bool llenado_maFill(char *code, int size = 0);
         bool llenado_size_maFill(int size, char * cadena = nullptr);
 
         bool llenado_precio_total() override;
-        bool llenado_peso_total() override:
+        bool llenado_peso_total() override;
 
         const char* getRelleno();
         int getRelleno_size();
-
-        bool addContent(cPrenda *nuevo, int add);
-        bool deleteContent(int begin, int end);
 
         ~cListaPeluche() override;
 
@@ -35,6 +31,7 @@ class cListaPeluche : public cListaPrenda
 
         void crear_memoria() override;
         void llenado_default();
+        void crear_memoria_np(int, cPrenda **) override;
 };
 
 #endif

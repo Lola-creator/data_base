@@ -7,11 +7,6 @@ cListaPeluche::cListaPeluche() : cListaPrenda()
     size_material_fill = -1;
 }
 
-void cListaPeluche:: llenado_default()
-{
-    material_fill = nullptr;
-}
-
 cListaPeluche::cListaPeluche(cPrenda * nuevo, int tam, char *code, char * source,
                              char * fill, int tam_code, int tam_source, int tam_fill)
             : cListaPrenda(nuevo, tam, code, source, tam_code, tam_source)
@@ -28,6 +23,11 @@ cListaPeluche::cListaPeluche(cPrenda * nuevo, int tam, char *code, char * source
     }
 }
 
+void cListaPeluche:: llenado_default()
+{
+    material_fill = nullptr;
+}
+
 bool cListaPeluche::llenado_maFill(char *code, int size)
 {
 	if(code != nullptr)//existe, puedes copiar
@@ -36,7 +36,7 @@ bool cListaPeluche::llenado_maFill(char *code, int size)
 		if(material_fill != nullptr) //liberar memoria de nombre
 			{  cIntermedio::liberar_arrays(&material_fill); }
 
-		if(llenado_size_material_fill(size, code))
+		if(llenado_size_maFill(size, code))
 		{
 			cIntermedio::crear_memoria_arrays(size_code, &codigo);
 			cIntermedio::copiar(code, codigo, size_code);
@@ -74,10 +74,20 @@ int cListaPeluche::getRelleno_size()
     return size_material_fill;
 }
 
+bool cListaPeluche::llenado_precio_total()
+{
+    return true;
+}
+
+bool cListaPeluche::llenado_peso_total()
+{
+    return true;
+}
+
 void cListaPeluche::crear_memoria()
 {
     if( manyClothes!= nullptr)
-    {   liberar_memoria();    }
+    {   cListaPrenda::liberar_memoria();    }
 
     if(size_storage>=1)
     {
@@ -90,9 +100,31 @@ void cListaPeluche::crear_memoria()
     }
 }
 
+void cListaPrenda::crear_memoria_np(int tam, cPrenda ** destino)
+{
+    if(*destino != nullptr)
+    {
+        cListaPrenda::liberar_memoria_np(destino);
+    }
+
+    if (tam > 0) 	//nombre
+	{	*destino = dynamic_cast<cPrenda*>(new cPeluche[tam]);
+        if(*destino ==nullptr)
+        {
+            std::cout<<"cannot cast"<<std::endl;
+        }
+    }
+	else
+	{
+		*destino = nullptr;
+		std::cout<<"array = 0 bytes?"<< std::endl;
+	}
+}
+
+
 cListaPeluche::~cListaPeluche()
 {
-    liberar_memoria();
+    cListaPrenda::liberar_memoria();
     cListaPrenda::liberar_arrays(&material_fill);
 }
 

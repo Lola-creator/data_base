@@ -45,7 +45,7 @@ class cListaPrenda : public cIntermedio
 
         virtual ~cListaPrenda();
 
-    private:
+    protected:
         cPrenda * manyClothes;
         char * codigo;//MODELO
         char * material;
@@ -55,8 +55,8 @@ class cListaPrenda : public cIntermedio
         int size_code;
         int size_material;
 
-        void crear_memoria_np(int, cPrenda **);
-        void liberar_memoria_np(cPrenda**);
+        void liberar_memoria_np(cPrenda ** target);
+        virtual void crear_memoria_np(int, cPrenda **);
         void crear_memoria() override;
         void liberar_memoria() override;
 };

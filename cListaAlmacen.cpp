@@ -140,7 +140,7 @@ void cListaAlmacen::buscarCodigo(char * codigo, int * temp)//40
         bool flag = true;
 
         //direccion de memoria
-        char *direccion = (*(manyStorages + i)).getCodigo();   //manyStorages+i)->codigo;
+        char *direccion = const_cast<char*>((*(manyStorages + i)).getCodigo());   //manyStorages+i)->codigo;
         cAlmacen valor = *(manyStorages+i);
         int max = valor.getSize_cod();
 
@@ -173,7 +173,7 @@ void cListaAlmacen::buscarFecha(char * codigo,int fin, int inicio, int* temp)
         bool flag = true;
 
         //direccion de memoria
-        char *direccion = (*(manyStorages + i)).getFecha();   //manyStorages+i)->codigo;
+        char *direccion = const_cast<char*>((*(manyStorages + i)).getFecha());   //manyStorages+i)->codigo;
 
         for(int a =0;a<intervalo;a++, inicio++)
         {
@@ -204,7 +204,7 @@ void cListaAlmacen::buscarNombre(char * codigo,int fin, int inicio, int* temp)
         bool flag = true;
 
         //direccion de memoria
-        char *direccion = (*(manyStorages + i)).getNombre();   //manyStorages+i)->codigo;
+        char *direccion = const_cast<char*>((*(manyStorages + i)).getNombre());   //manyStorages+i)->codigo;
 
         for(int a =0;a<intervalo;a++, inicio++)
         {

@@ -35,7 +35,7 @@ class cAccesorio:public cPrenda
 	private:
 		void llenado_nullptr();
 		
-		char *material_base;
+		char * material_base;
 		char * utilidad;
 		int size_base;
 		int size_utilidad;
