@@ -4,20 +4,16 @@
 
 cPersona::cPersona()
 {
-    asignar_nullptr();
     size_nombre = -1;
     size_telefono = -1;
     size_correo = -1;
     size_direccion = -1;
     edad = 0;
-    llenado_generalFecha();
 }
 
-cPersona::cPersona(char* name, char* code, int tam_nom, int tam_cod)
+cPersona::cPersona(char* name, char *adress, char *mail, char *phone, int tam_nom,
+                    int tam_adress, int tam_mail,int tam_phone, int age)
 {
-    asignar_nullptr();
-    llenado_generalFecha();
-
     if(llenado_nombre(name, tam_nom))
     {
         std::cout<<"NOMBRE LLENADO CON EXITO"<<std::endl;
@@ -25,7 +21,38 @@ cPersona::cPersona(char* name, char* code, int tam_nom, int tam_cod)
     else
     {   
         std::cout<<"NOMBRE no LLENADO CON EXITO"<<std::endl;
-        size_nombre = -1;
+    }
+    if(llenado_correo(mail, tam_mail))
+    {
+        std::cout<<"NOMBRE LLENADO CON EXITO"<<std::endl;
+    }
+    else
+    {
+        std::cout<<"NOMBRE no LLENADO CON EXITO"<<std::endl;
+    }
+    if(llenado_telefono(phone, tam_phone))
+    {
+        std::cout<<"NOMBRE LLENADO CON EXITO"<<std::endl;
+    }
+    else
+    {
+        std::cout<<"NOMBRE no LLENADO CON EXITO"<<std::endl;
+    }
+    if(llenado_direccion(adress, tam_adress))
+    {
+        std::cout<<"NOMBRE LLENADO CON EXITO"<<std::endl;
+    }
+    else
+    {
+        std::cout<<"NOMBRE no LLENADO CON EXITO"<<std::endl;
+    }
+    if(llenado_edad(age))
+    {
+        std::cout<<"NOMBRE LLENADO CON EXITO"<<std::endl;
+    }
+    else
+    {
+        std::cout<<"NOMBRE no LLENADO CON EXITO"<<std::endl;
     }
 }
 
@@ -60,9 +87,7 @@ cPersona& cPersona::operator=(const cPersona &obj) // Operador de asignación
 
 bool cPersona::asignarValores(const cPersona *obj)
 {
-    fecha.actualizarFecha();
-    fecha = (*obj).fecha;
-
+    bool flag = true;
     if(llenado_nombre((*obj).nombre, (*obj).size_nombre))
     {
         std::cout<<"NOMBRE LLENADO CON EXITO"<<std::endl;
@@ -70,7 +95,7 @@ bool cPersona::asignarValores(const cPersona *obj)
     else
     {   
         std::cout<<"NOMBRE no LLENO"<<std::endl;
-        return false;
+        flag = false;
     }
 
     if(llenado_telefono((*obj).telefono, (*obj).size_telefono))
@@ -80,7 +105,7 @@ bool cPersona::asignarValores(const cPersona *obj)
     else
     {   
         std::cout<<"TELEFONO no LLENO"<<std::endl;
-        return false;
+        flag = false;
     }
 
     if(llenado_correo((*obj).correo, (*obj).size_correo))
@@ -90,7 +115,7 @@ bool cPersona::asignarValores(const cPersona *obj)
     else
     {   
         std::cout<<"CORREO no LLENO"<<std::endl;
-        return false;
+        flag = false;
     }
 
     if(llenado_direccion((*obj).direccion, (*obj).size_direccion))
@@ -103,9 +128,17 @@ bool cPersona::asignarValores(const cPersona *obj)
         return false;
     }
 
-    setEdad((*obj).edad);
+    if(llenado_edad((*obj).edad) )
+    {
+        std::cout<<"EDAD LLENADO CON EXITO"<<std::endl;
+    }
+    else
+    {
+        std::cout<<"EDAD no LLENO"<<std::endl;
+        flag = false;
+    }
 
-    return true;
+    return flag;
 }
 
 void cPersona::print()
@@ -119,16 +152,6 @@ void cPersona::print()
     else
     {
         std::cout << "Nombre no asignado (nullptr)" << std::endl;
-        valido = false;
-    }
-
-    if (codigo != nullptr)
-    {
-        std::cout<<"CODIGO: " << codigo << " tam:" << size_codigo <<std::endl;
-    }
-    else
-    {
-        std::cout << "Codigo no asignado (nullptr)" << std::endl;
         valido = false;
     }
 
@@ -163,21 +186,6 @@ void cPersona::print()
     }
 
     std::cout << "EDAD: " << edad << std::endl;
-
-    if(!valido)
-    {
-        std::cout<<"NO SE ACCEDERA A SU ULTIMO ACCESO";
-    }
-    else
-    {
-        ultimoAcceso();
-    }
-}
-
-void cPersona::ultimoAcceso()
-{
-    std::cout << "Ultimo acceso: ";
-    fecha.print();
 }
 
 void cPersona::asignar_nullptr()
@@ -186,58 +194,6 @@ void cPersona::asignar_nullptr()
     telefono = nullptr;
     correo = nullptr;
     direccion = nullptr;
-}
-
-void cPersona::llenado_generalFecha()
-{
-    char respuesta;
-
-    std::cout<<"Desea inicializar fecha o por defecto? (Y/N): ";
-    std::cin>>respuesta;
-
-    if(respuesta == 'Y' || respuesta == 'y')
-    {
-        llenado_fecha();
-    }
-    else
-    {   
-        fecha.actualizarFecha();    
-    }
-}
-
-void cPersona::llenado_fecha()
-{
-    int valor = 0;
-
-    std::cout<<"dia: ";
-    std::cin>> valor;
-    fecha.setDia(valor);
-    std::cout<<" "<<std::endl;
-
-    std::cout<<"mes: ";
-    std::cin>> valor;
-    fecha.setMes(valor);
-    std::cout<<" "<<std::endl;
-
-    std::cout<<"year: ";
-    std::cin>> valor;
-    fecha.setYear(valor);
-    std::cout<<" "<<std::endl;
-
-    std::cout<<"Segundo: ";
-    std::cin>> valor;
-    fecha.setSeg(valor);
-    std::cout<<" "<<std::endl;
-
-    std::cout<<"Minuto: ";
-    std::cin>> valor;
-    fecha.setMin(valor);
-    std::cout<<" "<<std::endl;
-
-    std::cout<<"Hora: ";
-    std::cin>> valor;
-    fecha.setHora(valor);
-    std::cout<<" "<<std::endl;
 }
 
 bool cPersona::llenado_size_nombre(int size, char* cadena)
@@ -257,9 +213,59 @@ bool cPersona::llenado_size_nombre(int size, char* cadena)
     return true;
 }
 
+bool cPersona::llenado_size_direccion(int size, char* cadena)
+{
+    if(size <= 1)
+    {
+        size = contador(cadena);
+        if(size<=1)
+        {
+            size_direccion = -1;
+            std::cout<<"CADENA DE LONGITUD 0 INVIABLE"<<std::endl;
+            return false;
+        }
+    }
+
+    size_direccion = size;
+    return true;
+}
+
+bool cPersona::llenado_size_telefono(int size, char* cadena)
+{
+    if(size <= 1)
+    {
+        size = contador(cadena);
+        if(size<=1)
+        {
+            size_telefono = -1;
+            std::cout<<"CADENA DE LONGITUD 0 INVIABLE"<<std::endl;
+            return false;
+        }
+    }
+
+    size_telefono = size;
+    return true;
+}
+
+bool cPersona::llenado_size_correo(int size, char* cadena)
+{
+    if(size <= 1)
+    {
+        size = contador(cadena);
+        if(size<=1)
+        {
+            size_correo = -1;
+            std::cout<<"CADENA DE LONGITUD 0 INVIABLE"<<std::endl;
+            return false;
+        }
+    }
+
+    size_correo = size;
+    return true;
+}
+
 bool cPersona::llenado_nombre(char* name, int size)
 {
-    fecha.actualizarFecha();
 
     if(name != nullptr)
     {
@@ -279,14 +285,13 @@ bool cPersona::llenado_nombre(char* name, int size)
 
 bool cPersona::llenado_telefono(char* tel, int size)
 {
-    fecha.actualizarFecha();
 
     if(tel != nullptr)
     {
         if(telefono != nullptr) 
             liberar(&telefono);
 
-        if(llenado_size_codigo(size, tel))
+        if(llenado_size_telefono(size, tel))
         {
             crear_memoria(size_telefono, &telefono);
             copiar(tel, telefono, size_telefono);
@@ -299,14 +304,12 @@ bool cPersona::llenado_telefono(char* tel, int size)
 
 bool cPersona::llenado_correo(char* email, int size)
 {
-    fecha.actualizarFecha();
-
     if(email != nullptr)
     {
         if(correo != nullptr) 
             liberar(&correo);
 
-        if(llenado_size_codigo(size, email))
+        if(llenado_size_correo(size, email))
         {
             crear_memoria(size_correo, &correo);
             copiar(email, correo, size_correo);
@@ -319,14 +322,12 @@ bool cPersona::llenado_correo(char* email, int size)
 
 bool cPersona::llenado_direccion(char* dir, int size)
 {
-    fecha.actualizarFecha();
-
     if(dir != nullptr)
     {
         if(direccion != nullptr) 
             liberar(&direccion);
 
-        if(llenado_size_codigo(size, dir))
+        if(llenado_size_direccion(size, dir))
         {
             crear_memoria(size_direccion, &direccion);
             copiar(dir, direccion, size_direccion);
@@ -337,9 +338,16 @@ bool cPersona::llenado_direccion(char* dir, int size)
     return false;
 }
 
-void cPersona::setEdad(int _edad)
+bool cPersona::llenado_edad(int num)
 {
-    edad = _edad;
+    if(num<18)
+    {
+        edad =-1;
+        std::cout<<"Edad de un menor o invalida"<<std::endl;
+        return false;
+    }
+    edad = num;
+    return true;
 }
 
 int cPersona::contador(const char* cadena)
@@ -382,20 +390,9 @@ void cPersona::liberar(char** target)
     }
 }
 // Getter methods
-const char* cPersona::getFecha()
-{
-    // Similar implementation to cCliente
-    return nullptr;  // Placeholder
-}
-
 const char* cPersona::getNombre()
 {
     return nombre;
-}
-
-const char* cPersona::getCodigo()
-{
-    return codigo;
 }
 
 const char* cPersona::getTelefono()
@@ -423,14 +420,21 @@ int cPersona::getSize_nom()
     return size_nombre;
 }
 
-int cPersona::getSize_cod()
+int cPersona::getSize_telef()
 {
-    return size_codigo;
+    return size_telefono;
+}
+int cPersona::getSize_correo()
+{
+    return size_correo;
+}
+int cPersona::getSize_direcc()
+{
+    return size_direccion;
 }
 
 cPersona::~cPersona()
 {
-    fecha.actualizarFecha();
     liberar(&nombre);
     liberar(&telefono);
     liberar(&correo);

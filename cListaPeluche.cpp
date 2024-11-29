@@ -79,7 +79,7 @@ bool cListaPeluche::llenado_precio_total()
     bool flag = true;
     for(int i=0;i<size_storage; i++)
     {
-        cPeluche *valor = dynamic_cast<cPeluche *>((manyClothes+i));
+        cPeluche *valor = dynamic_cast<cPeluche *>(manyClothes+i);
         if(valor == nullptr)
         {
             flag = false;

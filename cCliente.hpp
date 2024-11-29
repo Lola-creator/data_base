@@ -16,31 +16,25 @@ class cCliente
 
 
 		void print();
-
-		bool llenado_nombre(char *name, int size = 0);
-		bool llenado_codigo(char *code, int size = 0);
-		bool llenado_direccion(char *code, int size = 0);
-		bool llenado_size_nom(int size, char * cadena = nullptr);
+		bool llenado_codigo(char *cadena, int num=0);
+		bool llenado_direccion(char *cadena, int num=0);
 		bool llenado_size_cod(int size, char * cadena = nullptr);
 		bool llenado_size_direccion(int size, char * cadena = nullptr);
 		void llenado_fecha();
 
-		const char * getFecha();
-		const char * getNombre();
 		const char * getDireccion();
 		const char * getCodigo();
-		int getSize_nom();
-		int getSize_cod();
 		int getSize_direccion();
+		int getSize_cod();
+		const char * getFecha();
 
 	protected:
 		cFecha fecha;
-		char *nombre;
-		char *codigo;
 		char *cadena_fecha;//revision ultima entrada
 		char *direccion_envio;
+		char *codigo;
 
-		int size_nom;
+
 		int size_envio;
 		int size_cod;
 		int size_direccion;
