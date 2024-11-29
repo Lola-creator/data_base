@@ -33,7 +33,7 @@ class cPrenda
         float getPeso();
         float getPrecio_unitario();
 
-        ~cPrenda();
+        virtual ~cPrenda();
 
     private:
         bool asignarValores(const cPrenda *obj);

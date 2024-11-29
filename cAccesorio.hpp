@@ -29,7 +29,7 @@ class cAccesorio:public cPrenda
 		int getSize_utilidad();
 		float getPrecio_base();
 		float getPrecio_final();
-		~cAccesorio();
+		virtual ~cAccesorio();
 
 		
 	private:

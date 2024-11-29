@@ -30,7 +30,7 @@ class cPeluche:public cPrenda
         float getPeso_final();
         float getPrecio_final();
 
-        ~cPeluche();
+        virtual ~cPeluche();
 
     private:
         char *unidad_relleno;

@@ -7,7 +7,7 @@ cListaAccesorio::cListaAccesorio()
 
 cListaAccesorio::cListaAccesorio(cPrenda * nuevo, int tam, char *code, char * source,
                      int tam_code,int tam_source, int tam_capas)
-                : cListaPrenda(nuevo, tam, code, source, tam_code, tam_source, tam_capas)
+                : cListaPrenda(nuevo, tam, code, source, tam_code, tam_source)
 {
     num_capas = -1;
     if(llenado_capas(tam_capas))
@@ -20,7 +20,7 @@ cListaAccesorio::cListaAccesorio(cPrenda * nuevo, int tam, char *code, char * so
     }
 }
 
-void cListaAccesorio::llenado_capas(int numero)
+bool cListaAccesorio::llenado_capas(int numero)
 {
     if(numero<=0)
 	{
@@ -41,7 +41,7 @@ bool cListaAccesorio::llenado_precio_total()
     bool flag = true;
     for(int i=0;i<size_storage; i++)
     {
-        cAccesorio *valor = dynamic_cast<cAccesorio * >((manyClothes+i));
+        cAccesorio *valor = dynamic_cast<cAccesorio*>(manyClothes+i);
         if(valor == nullptr)
         {
             flag = false;

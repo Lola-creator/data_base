@@ -1,3 +1,6 @@
+#ifndef CLISTAACCESORIO_HPP
+#define CLISTAACCESORIO_HPP
+
 #include "cAccesorio.hpp"
 #include "cListaPrenda.hpp"
 #include <iostream>
@@ -10,7 +13,7 @@ class cListaAccesorio : public cListaPrenda
                      int tam_code,int tam_source, int tam_capas);
         ~cListaAccesorio() override;
 
-        void llenado_capas(int num);
+        bool llenado_capas(int num);
         int getNum_capas();
 
         bool llenado_precio_total() override;
