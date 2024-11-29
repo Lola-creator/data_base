@@ -121,7 +121,7 @@ void cListaPeluche::crear_memoria()
     }
 }
 
-void cListaPrenda::crear_memoria_np(int tam, cPrenda ** destino)
+void cListaPeluche::crear_memoria_np(int tam, cPrenda ** destino)
 {
     if(*destino != nullptr)
     {
