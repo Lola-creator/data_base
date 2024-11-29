@@ -61,5 +61,4 @@ class cListaPrenda : public cIntermedio
         void liberar_memoria();
 };
 
-
 #endif
