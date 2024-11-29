@@ -76,11 +76,32 @@ int cListaPeluche::getRelleno_size()
 
 bool cListaPeluche::llenado_precio_total()
 {
+    bool flag = true;
+    for(int i=0;i<size_storage; i++)
+    {
+        cPeluche *valor = dynamic_cast<cPeluche *>((manyClothes+i));
+        if(valor == nullptr)
+        {
+            flag = false;
+            std::cout<<"error en acceder a metodo de lista peluche"<<std::endl;
+            break;
+        }
+        else
+        {
+            precio_total += (*valor).getPrecio_final();
+        }
+    }
+    if(precio_total<1.0)
+    {
+        precio_total = -1.0;
+        flag = false;
+    }
     return true;
 }
 
 bool cListaPeluche::llenado_peso_total()
 {
+    //sumar peso total, con un CONVERSOR
     return true;
 }
 
@@ -108,7 +129,7 @@ void cListaPrenda::crear_memoria_np(int tam, cPrenda ** destino)
     }
 
     if (tam > 0) 	//nombre
-	{	*destino = dynamic_cast<cPrenda*>(new cPeluche[tam]);
+	{	*destino = new cPeluche[tam];
         if(*destino ==nullptr)
         {
             std::cout<<"cannot cast"<<std::endl;

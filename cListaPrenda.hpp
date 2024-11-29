@@ -57,8 +57,8 @@ class cListaPrenda : public cIntermedio
 
         void liberar_memoria_np(cPrenda ** target);
         virtual void crear_memoria_np(int, cPrenda **);
-        void crear_memoria() override;
-        void liberar_memoria() override;
+        virtual void crear_memoria();
+        void liberar_memoria();
 };
 
 
