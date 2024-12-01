@@ -273,7 +273,15 @@ void cListaPrenda::buscarFecha(char * codigo,int fin, int inicio, int* temp)
 
 bool cListaPrenda::llenado_peso_total()
 {//conversor de peso de todos el os pesos
-    std::cout<<"wating"<<std::endl;
+    for(int i=0;i<size_storage; i++)
+    {
+        cPrenda valor = *(manyClothes+i);
+        peso_total += valor.getPeso();
+    }
+    if(peso_total<1.0)
+    {
+        return false;
+    }
     return true;
 }
 

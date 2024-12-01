@@ -79,7 +79,6 @@ cAccesorio& cAccesorio::operator=(const cAccesorio &obj)
 
 }
 
-
 bool cAccesorio::asignar_valores(const cAccesorio &obj)
 {
 	cPrenda::fecha.actualizarFecha();
@@ -117,7 +116,6 @@ bool cAccesorio::asignar_valores(const cAccesorio &obj)
 	}
 	return flag;
 }
-
 
 void cAccesorio::llenado_nullptr()
 {
@@ -228,6 +226,7 @@ bool cAccesorio::llenado_precio_final()
 	return true;
 	
 }
+
 		
 const char *cAccesorio::getMaterial_base()
 {
@@ -254,6 +253,12 @@ float cAccesorio::getPrecio_base()
 {
 	return precio_base;
 }
+
+float cAccesorio::getPeso()
+{
+	return peso+0.50;
+}
+
 
 float cAccesorio::getPrecio_final()
 {

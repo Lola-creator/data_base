@@ -47,6 +47,7 @@ class cListaPrenda : public cIntermedio
         char * codigo;//MODELO
         char * material;
         float precio_total;
+        float peso_total;
 
         int size_storage;
         int size_code;

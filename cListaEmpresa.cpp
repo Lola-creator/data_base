@@ -1,18 +1,19 @@
-#include "cListaTercero.hpp"
+#include "cListaEmpresa.hpp"
+#include "cIntermedio.hpp"
+#include <iostream>
 
-
-cListaTercero::cListaTercero() : cListaCliente()
+cListaEmpresa::cListaEmpresa(): cListaCliente()
 {
 
 }
 
-cListaTercero::cListaTercero(cCliente * nuevo, char*place, int tam_clients, int tam_place)
+cListaEmpresa::cListaEmpresa(cCliente * nuevo, char*place, int tam_clients, int tam_place)
                 :cListaCliente(nuevo, place, tam_clients, tam_place)
 {
 
 }
 
-void cListaTercero::buscarTelefono(char * codigo, int * temp)//40
+void cListaEmpresa::buscarId_fiscal(char * codigo, int* temp)//nombre real
 {
     int indexTemp = 0;
 
@@ -21,16 +22,10 @@ void cListaTercero::buscarTelefono(char * codigo, int * temp)//40
         bool flag = true;
 
         //direccion de memoria
-        cCliente * direccion = (manyClients + i);   //manyStorages+i)->codigo;
+        cEmpresa* direccion = (manyClients + i);   //manyStorages+i)->codigo;
 
-        cTercero *tercero = dynamic_cast<cTercero *>(direccion);
-        if (tercero == nullptr) {
-            std::cout<<"DYNAMIC CAST FAILED"<<std::endl;
-            break;
-        }
-
-        const char *cadena = (*tercero).getTelefono();
-        int tope = (*tercero).getSize_telef();
+        const char *cadena = (*direccion).getId_fiscal();
+        int tope = (*direccion).getSize_id_fidcal();
 
         for(int a =0;a<tope;a++)
         {
@@ -52,7 +47,7 @@ void cListaTercero::buscarTelefono(char * codigo, int * temp)//40
     }
 }
 
-void cListaTercero::buscarCorreo(char * codigo, int * temp)//40
+void cListaEmpresa::buscarRazon_social(char * codigo, int* temp)//nombre real
 {
     int indexTemp = 0;
 
@@ -61,16 +56,10 @@ void cListaTercero::buscarCorreo(char * codigo, int * temp)//40
         bool flag = true;
 
         //direccion de memoria
-        cCliente * direccion = (manyClients + i);   //manyStorages+i)->codigo;
+        cEmpresa* direccion = (manyClients + i);   //manyStorages+i)->codigo;
 
-        cTercero *tercero = dynamic_cast<cTercero *>(direccion);
-        if (tercero == nullptr) {
-            std::cout<<"DYNAMIC CAST FAILED"<<std::endl;
-            break;
-        }
-
-        const char *cadena = (*tercero).getCorreo();
-        int tope = (*tercero).getSize_correo();
+        const char *cadena = (*direccion).getRazon_social();
+        int tope = (*direccion).getSize_razon_social();
 
         for(int a =0;a<tope;a++)
         {
@@ -92,7 +81,7 @@ void cListaTercero::buscarCorreo(char * codigo, int * temp)//40
     }
 }
 
-void cListaTercero::buscarDireccion(char * codigo, int * temp)//40
+void cListaEmpresa::buscarNombre(char * codigo, int* temp)//nombre real
 {
     int indexTemp = 0;
 
@@ -103,14 +92,14 @@ void cListaTercero::buscarDireccion(char * codigo, int * temp)//40
         //direccion de memoria
         cCliente * direccion = (manyClients + i);   //manyStorages+i)->codigo;
 
-        cTercero *tercero = dynamic_cast<cTercero *>(direccion);
+        cEmpresa *empresa= dynamic_cast<cEmpresa *>(direccion);
         if (tercero == nullptr) {
             std::cout<<"DYNAMIC CAST FAILED"<<std::endl;
             break;
         }
 
-        const char *cadena = (*tercero).getDireccion();
-        int tope = (*tercero).getSize_direcc();
+        const char *cadena = (*empresa).getContacto();
+        int tope = (*empresa).getSize_contacto();
 
         for(int a =0;a<tope;a++)
         {
@@ -132,7 +121,7 @@ void cListaTercero::buscarDireccion(char * codigo, int * temp)//40
     }
 }
 
-void cListaTercero::buscarNombre(char * codigo, int* temp)//nombre real
+void cListaEmpresa::buscarRegistro(char * codigo, int* temp)//nombre real
 {
     int indexTemp = 0;
 
@@ -143,15 +132,14 @@ void cListaTercero::buscarNombre(char * codigo, int* temp)//nombre real
         //direccion de memoria
         cCliente * direccion = (manyClients + i);   //manyStorages+i)->codigo;
 
-        cTercero *tercero = dynamic_cast<cTercero *>(direccion);
+        cEmpresa *empresa= dynamic_cast<cEmpresa *>(direccion);
         if (tercero == nullptr) {
             std::cout<<"DYNAMIC CAST FAILED"<<std::endl;
             break;
         }
 
-
-        const char *cadena = (*tercero).getAfiliado();
-        int tope = (*tercero).getSize_afiliado();
+        const char *cadena = (*empresa).getContrato();
+        int tope = (*empresa).getSize_contrato();
 
         for(int a =0;a<tope;a++)
         {
@@ -173,54 +161,15 @@ void cListaTercero::buscarNombre(char * codigo, int* temp)//nombre real
     }
 }
 
-void cListaTercero::buscarRegistro(char * codigo, int * temp)//40
-{
-    int indexTemp = 0;
 
-    for(int i=0;i<size_client;i++)
-    {
-        bool flag = true;
-
-        //direccion de memoria
-        cCliente * direccion = (manyClients + i);   //manyStorages+i)->codigo;
-
-        cTercero *tercero = dynamic_cast<cTercero *>(direccion);
-        if (tercero == nullptr) {
-            std::cout<<"DYNAMIC CAST FAILED"<<std::endl;
-            break;
-        }
-
-        const char *cadena = (*tercero).getRegistro();
-        int tope = (*tercero).getSize_registro();
-
-        for(int a =0;a<tope;a++)
-        {
-            if(  *(codigo + a) == '\0' || *(codigo+a) != *(cadena+a))
-            {
-                flag = false;
-                break;
-            }
-        }
-        if(flag)
-        {
-            *(temp+ indexTemp) = i;
-            indexTemp++;
-        }
-    }
-    if(indexTemp ==0)
-    {
-        std::cout<<"NO MATCHING STRINGS - CODE"<<std::endl;
-    }
-}
-
-void cListaTercero::crear_memoria()
+void cListaEmpresa::crear_memoria()
 {
     if( manyClients != nullptr)
     {   liberar_memoria();    }
 
     if(size_client>=1)
     {
-        manyClients= new cTercero[size_client];
+        manyClients= new cEmpresa[size_client];
     }
     else
     {
@@ -230,7 +179,7 @@ void cListaTercero::crear_memoria()
 
 }
 
-void cListaTercero::crear_memoria_np(int tam, cCliente **destino)
+void cListaEmpresa::crear_memoria_np(int tam, cCliente **destino)
 {
     if(*destino != nullptr)
     {
@@ -238,7 +187,7 @@ void cListaTercero::crear_memoria_np(int tam, cCliente **destino)
     }
 
     if (tam > 0) 	//nombre
-	{	*destino = new cTercero[tam]; }
+	{	*destino = new cEmpresa[tam]; }
 	else
 	{
 		*destino = nullptr;
@@ -246,7 +195,7 @@ void cListaTercero::crear_memoria_np(int tam, cCliente **destino)
 	}
 }
 
-cListaTercero::~cListaTercero()
+cListaEmpresa::~cListaEmpresa()
 {
 
 }

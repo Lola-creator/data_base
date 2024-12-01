@@ -25,7 +25,8 @@ class cListaCliente : public cIntermedio
         void buscarCodigo(char * codigo, int* temp);
         void buscarEnvio(char * codigo, int* temp);
         void buscarFecha(char * codigo,int fin, int inicio, int* temp);
-        void buscarNombre(char * codigo, int* temp);
+        virtual void buscarNombre(char * codigo, int* temp);
+        virtual void buscarRegistro(char * codigo, int* temp);
         //int buscar
 
         virtual ~cListaCliente();
@@ -35,6 +36,7 @@ class cListaCliente : public cIntermedio
         char * sede;
         int size_sede;
         int size_client;
+
         virtual void crear_memoria_np(int, cCliente **);
         virtual void crear_memoria();
 

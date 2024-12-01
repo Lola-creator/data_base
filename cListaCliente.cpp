@@ -195,8 +195,8 @@ void cListaCliente::buscarEnvio(char * codigo, int * temp)//40
 
         //direccion de memoria
         cCliente * direccion = (manyClients + i);   //manyStorages+i)->codigo;
-        const char *cadena = (*direccion).getDireccion();
-        int tope = (*direccion).getSize_direccion();
+        const char *cadena = (*direccion).getEnvio();
+        int tope = (*direccion).getSize_envio();
 
         for(int a =0;a<tope;a++)
         {
@@ -230,6 +230,39 @@ void cListaCliente::buscarCodigo(char * codigo, int * temp)//40
         cCliente * direccion = (manyClients + i);   //manyStorages+i)->codigo;
         const char *cadena = (*direccion).getCodigo();
         int tope = (*direccion).getSize_cod();
+
+        for(int a =0;a<tope;a++)
+        {
+            if(  *(codigo + a) == '\0' || *(codigo+a) != *(cadena+a))
+            {
+                flag = false;
+                break;
+            }
+        }
+        if(flag)
+        {
+            *(temp+ indexTemp) = i;
+            indexTemp++;
+        }
+    }
+    if(indexTemp ==0)
+    {
+        std::cout<<"NO MATCHING STRINGS - CODE"<<std::endl;
+    }
+}
+
+void cListaCliente::buscarRegistro(char * codigo, int * temp)//40
+{
+    int indexTemp = 0;
+
+    for(int i=0;i<size_client;i++)
+    {
+        bool flag = true;
+
+        //direccion de memoria
+        cCliente * direccion = (manyClients + i);   //manyStorages+i)->codigo;
+        const char *cadena = (*direccion).getRegistro();
+        int tope = (*direccion).getSize_registro();
 
         for(int a =0;a<tope;a++)
         {

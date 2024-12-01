@@ -30,7 +30,7 @@ class cPrenda
 		int getSize_color();
         int getSize_medida();
 		int getSize_talla();
-        float getPeso();
+        virtual float getPeso();
         float getPrecio_unitario();
 
         virtual ~cPrenda();

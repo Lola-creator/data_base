@@ -63,9 +63,29 @@ bool cListaAccesorio::llenado_precio_total()
 
 bool cListaAccesorio::llenado_peso_total()
 {
-    //SUMAR PESO TOTAL CON UN CONVERSOR
+    bool flag = true;
+    for(int i=0;i<size_storage; i++)
+    {
+        cAccesorio *valor = dynamic_cast<cAccesorio*>(manyClothes+i);
+        if(valor == nullptr)
+        {
+            flag = false;
+            std::cout<<"error en acceder a metodo de lista accesorio"<<std::endl;
+            break;
+        }
+        else
+        {
+            precio_total += (*valor).getPeso();
+        }
+    }
+    if(peso_total<1.0)
+    {
+        peso_total = -1.0;
+        flag = false;
+    }
     return true;
 }
+
 
 void cListaAccesorio::crear_memoria()
 {

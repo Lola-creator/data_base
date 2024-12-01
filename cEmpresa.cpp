@@ -12,8 +12,8 @@ cEmpresa::cEmpresa() : cCliente()
 
 cEmpresa::cEmpresa(char*razon, char*contact, char*id, char*paper, int tam_razon, int tam_contact,
                 int tam_id, int tam_paper, float less_money, char*comer, char *code, char *direccion,
-                int tam_comer,int tam_cod, int tam_direccion)
-        :cCliente( comer, code, direccion, tam_comer, tam_cod, tam_direccion)
+                int tam_comer,int tam_cod, int tam_direccion, char *regis, int tam_regis)
+        :cCliente( comer, code, direccion, tam_comer, tam_cod, tam_direccion, regis, tam_regis)
 {
     cCliente::fecha.actualizarFecha();
     llenado_nullptr();

@@ -6,14 +6,15 @@
 #include "cPersona.hpp"
 #include "cFecha.hpp"
 
-class cTercero : public cCliente, cPersona
+class cTercero : public cCliente, public cPersona
 {
 
     public:
         explicit cTercero();
         explicit cTercero(char* comer, char *code, char *direccion,int tam_comer,int tam_cod, int tam_direccion,
                           char* name, char *adress, char *mail, char *phone, int tam_nom, int tam_adress,
-                          int tam_mail,int tam_phone, int age, char *relative, char *money, int tam_relative, int tam_money);
+                          int tam_mail,int tam_phone, int age, char *relative, char *money, int tam_relative, int tam_money,
+                          char *regis, int tam_regis);
         cTercero(const cTercero &obj);
 		cTercero& operator=(const cTercero &obj);
         virtual ~cTercero();

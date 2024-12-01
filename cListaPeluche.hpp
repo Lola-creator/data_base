@@ -26,7 +26,6 @@ class cListaPeluche : public cListaPrenda
 
     private:
         char * material_fill;
-        float precio_total;
         int size_material_fill;
 
         void crear_memoria() override;

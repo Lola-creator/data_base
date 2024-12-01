@@ -11,7 +11,7 @@ class cEmpresa : public cCliente
         cEmpresa();
 		cEmpresa(char*razon, char*contact, char*id, char*paper, int tam_razon, int tam_contact,
                 int tam_id, int tam_paper, float less_money, char*comer, char *code,
-                char *direccion,int tam_comer,int tam_cod, int tam_direccion);
+                char *direccion,int tam_comer,int tam_cod, int tam_direccion, char *regis, int tam_regis);
 		cEmpresa(const cEmpresa &obj);
 		cEmpresa& operator=(const cEmpresa &obj);
         ~cEmpresa();

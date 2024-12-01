@@ -12,7 +12,7 @@ cCliente::cCliente()
 	llenado_generalFecha();
 }
 
-cCliente::cCliente(char*comer, char *code, char *direccion,int tam_comer,int tam_cod, int tam_direccion)
+cCliente::cCliente(char*comer, char *code, char *direccion,int tam_comer,int tam_cod, int tam_direccion, char *regis, int tam_regis)
 {
 	asignar_nullptr();
 	llenado_generalFecha();
@@ -33,12 +33,19 @@ cCliente::cCliente(char*comer, char *code, char *direccion,int tam_comer,int tam
 	{	std::cout<<"CODIGO no LLENADO CON EXITO"<<std::endl;
 	}
 
-	if(llenado_direccion(direccion, tam_direccion))
+	if(llenado_envio(direccion, tam_direccion))
 	{
 		std::cout<<"DIRECCION LLENADO CON EXITO"<<std::endl;
 	}
 	else
 	{	std::cout<<"DIRECCION no LLENADO CON EXITO"<<std::endl;
+	}
+	if(llenado_registro(regis, tam_regis))
+	{
+		std::cout<<"NOMBRE COMERCIAL LLENADO CON EXITO"<<std::endl;
+	}
+	else
+	{	std::cout<<"NOMBRE COMERCIAL no LLENADO CON EXITO"<<std::endl;
 	}
 
 }
@@ -88,7 +95,7 @@ bool cCliente::asignarValores(const cCliente *obj)
 		return false;
 	}
 
-	if(llenado_direccion((*obj).direccion_envio, (*obj).size_direccion))
+	if(llenado_envio((*obj).direccion_envio, (*obj).size_envio))
 	{
 		std::cout<<"NOMBRE LLENADO CON EXITO"<<std::endl;
 	}
@@ -97,6 +104,21 @@ bool cCliente::asignarValores(const cCliente *obj)
 		return false;
 	}
 
+	if(llenado_comercial((*obj).nombre_comercial, (*obj).size_comercial))
+	{
+		std::cout<<"NOMBRE COMERCIAL LLENADO CON EXITO"<<std::endl;
+	}
+	else
+	{	std::cout<<"NOMBRE COMERCIAL no LLENADO CON EXITO"<<std::endl;
+	}
+
+	if(llenado_registro((*obj).registro, (*obj).size_registro))
+	{
+		std::cout<<"NOMBRE COMERCIAL LLENADO CON EXITO"<<std::endl;
+	}
+	else
+	{	std::cout<<"NOMBRE COMERCIAL no LLENADO CON EXITO"<<std::endl;
+	}
 
 	return true;
 
@@ -119,7 +141,7 @@ void cCliente::print()
 
 	if (direccion_envio!= nullptr)
 	{
-    std::cout<<"CODIGO: " <<direccion_envio<<" tam:"<<size_direccion<<std::endl;
+    std::cout<<"CODIGO: " <<direccion_envio<<" tam:"<<size_envio<<std::endl;
 	}
 	else
 	{
@@ -245,20 +267,20 @@ void cCliente::llenado_fecha()
 	std::cout<<" "<<std::endl;
 }
 
-bool cCliente::llenado_size_direccion(int size, char * cadena)
+bool cCliente::llenado_size_envio(int size, char * cadena)
 {
 	if(size <= 1)//o por deafult o no lo lleno
 	{
 		size = contador(cadena);
 		if(size<=1)// still 0, no se crea nada
 		{
-			size_direccion = -1;
+			size_envio = -1;
 			std::cout<<"CADENA DE LONGITUD 0 INVIABLE"<<std::endl;
 			return false;
 		}
 	}
 
-	size_direccion = size;
+	size_envio = size;
 	return true;
 }
 
@@ -276,6 +298,23 @@ bool cCliente::llenado_size_comercial(int size, char * cadena)
 	}
 
 	size_comercial = size;
+	return true;
+}
+
+bool cCliente::llenado_size_registro(int size, char * cadena)
+{
+	if(size <= 1)//o por deafult o no lo lleno
+	{
+		size = contador(cadena);
+		if(size<=1)// still 0, no se crea nada
+		{
+			size_registro= -1;
+			std::cout<<"CADENA DE LONGITUD 0 INVIABLE"<<std::endl;
+			return false;
+		}
+	}
+
+	size_registro = size;
 	return true;
 }
 
@@ -338,7 +377,7 @@ bool cCliente::llenado_comercial(char *code, int size)
 
 }
 
-bool cCliente::llenado_direccion(char *name, int size)
+bool cCliente::llenado_envio(char *name, int size)
 {
 	fecha.actualizarFecha();
 
@@ -348,10 +387,10 @@ bool cCliente::llenado_direccion(char *name, int size)
 		if(direccion_envio != nullptr) //liberar memoria de nombre
 			{  liberar(&direccion_envio); }
 
-		if(llenado_size_direccion(size, name))
+		if(llenado_size_envio(size, name))
 		{
-			crear_memoria(size_direccion, &direccion_envio);
-			copiar(name, direccion_envio, size_direccion);
+			crear_memoria(size_envio, &direccion_envio);
+			copiar(name, direccion_envio, size_envio);
 			return true;
 		}
 	}
@@ -359,7 +398,28 @@ bool cCliente::llenado_direccion(char *name, int size)
 	return false;
 }
 
-const char *cCliente::getDireccion()
+bool cCliente::llenado_registro(char *code, int size)
+{
+	fecha.actualizarFecha();
+	if(code != nullptr)//existe, puedes copiar
+	{
+		//si nombre esta ocupado
+		if(registro!= nullptr) //liberar memoria de nombre
+			{  liberar(&registro); }
+
+		if(llenado_size_registro(size, code))
+		{
+			crear_memoria(size_registro, &registro);
+			copiar(code, registro, size_registro);
+			return true;
+		}
+	}
+	std::cout<< "ERROR AL LLENAR CODIGO" <<std::endl;
+	return false;
+
+}
+
+const char *cCliente::getEnvio()
 {
 	return direccion_envio;
 }
@@ -367,6 +427,11 @@ const char *cCliente::getDireccion()
 const char * cCliente::getCodigo()
 {
 	return codigo;
+}
+
+const char * cCliente::getRegistro()
+{
+	return registro;
 }
 
 const char * cCliente::getComercial()
@@ -399,9 +464,14 @@ int cCliente::getSize_cod()
 	return size_cod;
 }
 
-int cCliente::getSize_direccion()
+int cCliente::getSize_registro()
 {
-	return size_direccion;
+	return size_registro;
+}
+
+int cCliente::getSize_envio()
+{
+	return size_envio;
 }
 
 int cCliente::getSize_comercial()

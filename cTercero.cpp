@@ -15,8 +15,9 @@ cTercero::cTercero()
 
 cTercero::cTercero(char* comer, char *code, char *direccion,int tam_comer,int tam_cod, int tam_direccion,
                    char* name, char *adress, char *mail, char *phone, int tam_nom, int tam_adress,
-                   int tam_mail,int tam_phone, int age, char *relative, char *money, int tam_relative, int tam_money)
-        : cCliente (comer, code, direccion, tam_comer, tam_cod, tam_direccion)
+                   int tam_mail,int tam_phone, int age, char *relative, char *money, int tam_relative, int tam_money
+                   , char *regis, int tam_regis)
+        : cCliente (comer, code, direccion, tam_comer, tam_cod, tam_direccion, regis, tam_regis)
         , cPersona (name, adress, mail, phone, tam_nom, tam_adress, tam_mail, tam_phone, age)
 {
     cCliente::fecha.actualizarFecha();
