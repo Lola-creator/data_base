@@ -35,7 +35,7 @@ class cEmpresa : public cCliente
         int getSize_contacto();
         int getSize_razon_social();
         int getSize_id_fiscal();
-        int getSsize_contrato();
+        int getSize_contrato();
 
     private:
         float descuento;

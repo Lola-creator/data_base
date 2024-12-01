@@ -2,7 +2,7 @@
 #include "cIntermedio.hpp"
 #include <iostream>
 
-cListaEmpresa::cListaEmpresa(): cListaCliente()
+cListaEmpresa::cListaEmpresa() : cListaCliente()
 {
 
 }
@@ -22,10 +22,16 @@ void cListaEmpresa::buscarId_fiscal(char * codigo, int* temp)//nombre real
         bool flag = true;
 
         //direccion de memoria
-        cEmpresa* direccion = (manyClients + i);   //manyStorages+i)->codigo;
+        cCliente * direccion = (manyClients + i);   //manyStorages+i)->codigo;
 
-        const char *cadena = (*direccion).getId_fiscal();
-        int tope = (*direccion).getSize_id_fidcal();
+        cEmpresa *empresa= dynamic_cast<cEmpresa *>(direccion);
+        if (empresa == nullptr) {
+            std::cout<<"DYNAMIC CAST FAILED"<<std::endl;
+            break;
+        }
+
+        const char *cadena = (*empresa).getId_fiscal();
+        int tope = (*empresa).getSize_id_fiscal();
 
         for(int a =0;a<tope;a++)
         {
@@ -56,10 +62,16 @@ void cListaEmpresa::buscarRazon_social(char * codigo, int* temp)//nombre real
         bool flag = true;
 
         //direccion de memoria
-        cEmpresa* direccion = (manyClients + i);   //manyStorages+i)->codigo;
+        cCliente * direccion = (manyClients + i);   //manyStorages+i)->codigo;
 
-        const char *cadena = (*direccion).getRazon_social();
-        int tope = (*direccion).getSize_razon_social();
+        cEmpresa *empresa= dynamic_cast<cEmpresa *>(direccion);
+        if (empresa == nullptr) {
+            std::cout<<"DYNAMIC CAST FAILED"<<std::endl;
+            break;
+        }
+
+        const char *cadena = (*empresa).getRazon_social();
+        int tope = (*empresa).getSize_razon_social();
 
         for(int a =0;a<tope;a++)
         {
@@ -93,7 +105,7 @@ void cListaEmpresa::buscarNombre(char * codigo, int* temp)//nombre real
         cCliente * direccion = (manyClients + i);   //manyStorages+i)->codigo;
 
         cEmpresa *empresa= dynamic_cast<cEmpresa *>(direccion);
-        if (tercero == nullptr) {
+        if (empresa == nullptr) {
             std::cout<<"DYNAMIC CAST FAILED"<<std::endl;
             break;
         }
@@ -133,7 +145,7 @@ void cListaEmpresa::buscarRegistro(char * codigo, int* temp)//nombre real
         cCliente * direccion = (manyClients + i);   //manyStorages+i)->codigo;
 
         cEmpresa *empresa= dynamic_cast<cEmpresa *>(direccion);
-        if (tercero == nullptr) {
+        if (empresa== nullptr) {
             std::cout<<"DYNAMIC CAST FAILED"<<std::endl;
             break;
         }

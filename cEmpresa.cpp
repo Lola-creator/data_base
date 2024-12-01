@@ -339,7 +339,7 @@ int cEmpresa::getSize_id_fiscal()
     return size_id_fiscal;
 }
 
-int cEmpresa::getSsize_contrato()
+int cEmpresa::getSize_contrato()
 {
     return size_contrato;
 }
