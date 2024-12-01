@@ -24,7 +24,7 @@ cListaPrenda::cListaPrenda(cPrenda * nuevo, int tam, char *code, char * source, 
     {
         std::cout<<"NO LOGRADO LLENAR PRENDA"<<std::endl;
     }
-    if(llenado_codigo(codigo))
+    if(llenado_codigo(codigo, tam_code))
     {
         std::cout<<"LLENADO CODIGO"<<std::endl;
     }
@@ -32,7 +32,7 @@ cListaPrenda::cListaPrenda(cPrenda * nuevo, int tam, char *code, char * source, 
     {
         std::cout<<"NO LLENADO CODIGO"<<std::endl;
     }
-    if(llenado_material(source))
+    if(llenado_material(source, tam_source))
     {
         std::cout<<"LLENADO MATERIAL"<<std::endl;
     }
@@ -82,7 +82,6 @@ bool cListaPrenda::llenado_codigo(char *code, int size)
 	}
 	std::cout<< "ERROR AL LLENAR CODIGO" <<std::endl;
 	return false;
-
 }
 
 bool cListaPrenda::llenado_precio_total()

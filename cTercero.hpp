@@ -16,7 +16,7 @@ class cTercero : public cCliente, cPersona
                           int tam_mail,int tam_phone, int age, char *relative, char *money, int tam_relative, int tam_money);
         cTercero(const cTercero &obj);
 		cTercero& operator=(const cTercero &obj);
-        ~cTercero();
+        virtual ~cTercero();
 
         bool llenado_factura(char *cadena, int size = 0);
         bool llenado_afiliado(char *cadena, int size = 0);

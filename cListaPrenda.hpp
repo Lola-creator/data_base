@@ -30,9 +30,7 @@ class cListaPrenda : public cIntermedio
         int getSize_material();
         int getPrecio_total();
 
-
         void print();
-        void llenado_nullptr();
 
         bool addContent(cPrenda *nuevo, int add);
         bool deleteContent(int begin, int end);
@@ -40,7 +38,6 @@ class cListaPrenda : public cIntermedio
         void buscarTalla(char * codigo, int * temp);
         void buscarColor(char * codigo, int * temp);
         void buscarFecha(char * codigo,int fin, int inicio, int* temp);
-        void buscarNombre(char * codigo,int fin, int inicio, int* temp);
         void buscarPeso(char *unidad, float numero, int *temp);
 
         virtual ~cListaPrenda();
@@ -55,10 +52,13 @@ class cListaPrenda : public cIntermedio
         int size_code;
         int size_material;
 
-        void liberar_memoria_np(cPrenda ** target);
         virtual void crear_memoria_np(int, cPrenda **);
         virtual void crear_memoria();
+        void liberar_memoria_np(cPrenda ** target);
         void liberar_memoria();
+
+    private:
+        void llenado_nullptr();
 };
 
 #endif
