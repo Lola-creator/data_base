@@ -8,14 +8,22 @@ cCliente::cCliente()
 	asignar_nullptr();
 	size_cod =-1;
 	size_envio = -1;
+	size_comercial = -1;
 	llenado_generalFecha();
 }
 
-cCliente::cCliente(char *name, char *code, char *direccion,
-				   int tam_nom, int tam_cod, int tam_direccion)
+cCliente::cCliente(char*comer, char *code, char *direccion,int tam_comer,int tam_cod, int tam_direccion)
 {
 	asignar_nullptr();
 	llenado_generalFecha();
+
+	if(llenado_comercial(comer, tam_comer))
+	{
+		std::cout<<"NOMBRE COMERCIAL LLENADO CON EXITO"<<std::endl;
+	}
+	else
+	{	std::cout<<"NOMBRE COMERCIAL no LLENADO CON EXITO"<<std::endl;
+	}
 
 	if(llenado_codigo(code, tam_cod))
 	{
@@ -109,6 +117,26 @@ void cCliente::print()
 		valido = false;
 	}
 
+	if (direccion_envio!= nullptr)
+	{
+    std::cout<<"CODIGO: " <<direccion_envio<<" tam:"<<size_direccion<<std::endl;
+	}
+	else
+	{
+		std::cout << "Codigo no asignado (nullptr)" << std::endl;
+		valido = false;
+	}
+
+	if (nombre_comercial!= nullptr)
+	{
+    std::cout<<"NOMBRE COMERCIAL: " <<nombre_comercial<<" tam:"<<size_comercial<<std::endl;
+	}
+	else
+	{
+		std::cout << "Codigo no asignado (nullptr)" << std::endl;
+		valido = false;
+	}
+
 	if(!valido)
 	{
 		std::cout<<"NO SE ACCEDERA A SU ULTIMO ACCESO";
@@ -163,6 +191,7 @@ void cCliente::asignar_nullptr()
 	codigo = nullptr;
 	direccion_envio = nullptr;
     cadena_fecha = nullptr;
+	nombre_comercial = nullptr;
 }
 
 void cCliente::llenado_generalFecha()
@@ -233,6 +262,23 @@ bool cCliente::llenado_size_direccion(int size, char * cadena)
 	return true;
 }
 
+bool cCliente::llenado_size_comercial(int size, char * cadena)
+{
+	if(size <= 1)//o por deafult o no lo lleno
+	{
+		size = contador(cadena);
+		if(size<=1)// still 0, no se crea nada
+		{
+			size_comercial = -1;
+			std::cout<<"CADENA DE LONGITUD 0 INVIABLE"<<std::endl;
+			return false;
+		}
+	}
+
+	size_comercial = size;
+	return true;
+}
+
 bool cCliente::llenado_size_cod(int size, char * cadena)
 {
 	if(size <= 1)//o por deafult o no lo lleno
@@ -263,6 +309,27 @@ bool cCliente::llenado_codigo(char *code, int size)
 		{
 			crear_memoria(size_cod, &codigo);
 			copiar(code, codigo, size_cod);
+			return true;
+		}
+	}
+	std::cout<< "ERROR AL LLENAR CODIGO" <<std::endl;
+	return false;
+
+}
+
+bool cCliente::llenado_comercial(char *code, int size)
+{
+	fecha.actualizarFecha();
+	if(code != nullptr)//existe, puedes copiar
+	{
+		//si nombre esta ocupado
+		if(codigo != nullptr) //liberar memoria de nombre
+			{  liberar(&nombre_comercial); }
+
+		if(llenado_size_comercial(size, code))
+		{
+			crear_memoria(size_comercial, &nombre_comercial);
+			copiar(code, nombre_comercial, size_comercial);
 			return true;
 		}
 	}
@@ -302,6 +369,11 @@ const char * cCliente::getCodigo()
 	return codigo;
 }
 
+const char * cCliente::getComercial()
+{
+	return nombre_comercial;
+}
+
 const char * cCliente::getFecha()
 {
     if(cadena_fecha != nullptr)
@@ -322,12 +394,20 @@ const char * cCliente::getFecha()
     return cadena_fecha;
 }
 
-
 int cCliente::getSize_cod()
 {
 	return size_cod;
 }
 
+int cCliente::getSize_direccion()
+{
+	return size_direccion;
+}
+
+int cCliente::getSize_comercial()
+{
+	return size_comercial;
+}
 
 int cCliente::contador(const char * cadena)
 {

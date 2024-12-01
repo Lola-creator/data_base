@@ -7,37 +7,44 @@ class cCliente
 {
     public:
 
-		~cCliente();//chau todo
+		virtual ~cCliente();//chau todo
 
-		cCliente();
-		explicit cCliente(char *name , char *code , char *direccion, int tam_nom, int tam_cod, int tam_direccion);//
-		cCliente(const cCliente &obj);
+		explicit cCliente();
+		explicit cCliente(char*comercial, char *code, char *direccion,int tam_comer,int tam_cod,
+						  int tam_direccion);//
+		explicit cCliente(const cCliente &obj);
 		cCliente& operator=(const cCliente &obj);
 
 
 		void print();
 		bool llenado_codigo(char *cadena, int num=0);
 		bool llenado_direccion(char *cadena, int num=0);
+		bool llenado_comercial(char *cadena, int num=0);
 		bool llenado_size_cod(int size, char * cadena = nullptr);
 		bool llenado_size_direccion(int size, char * cadena = nullptr);
+		bool llenado_size_comercial(int size, char * cadena = nullptr);
 		void llenado_fecha();
 
+		const char * getComercial();
 		const char * getDireccion();
 		const char * getCodigo();
+		const char * getFecha();
+
 		int getSize_direccion();
 		int getSize_cod();
-		const char * getFecha();
+		int getSize_comercial();
 
 	protected:
 		cFecha fecha;
 		char *cadena_fecha;//revision ultima entrada
 		char *direccion_envio;
 		char *codigo;
-
+		char *nombre_comercial;
 
 		int size_envio;
 		int size_cod;
 		int size_direccion;
+		int size_comercial;
 
 		void ultimoAcceso();
 		void asignar_nullptr();

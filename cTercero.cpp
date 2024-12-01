@@ -1,5 +1,6 @@
 #include "cTercero.hpp"
 #include "cCliente.hpp"
+#include "cPersona.hpp"
 #include "cFecha.hpp"
 #include <iostream>
 #include <ctime>
@@ -7,18 +8,19 @@
 cTercero::cTercero()
 {
     cCliente::fecha.actualizarFecha();
-    llenado_nullptr();
+    llenar_nullptr();
     size_factura = -1;
     size_afiliado = -1;
 }
 
-cTercero::cTercero(char *name , char *code , char *direccion, int tam_nom, int tam_cod,
-                   int tam_direccion, char *relative, char *money, char *id, int tam_relative,
-                   int tam_money, tam_id)
-        : cCliente(name, code, direccion, tam_nom, tam_cod, tam_direccion);
+cTercero::cTercero(char* comer, char *code, char *direccion,int tam_comer,int tam_cod, int tam_direccion,
+                   char* name, char *adress, char *mail, char *phone, int tam_nom, int tam_adress,
+                   int tam_mail,int tam_phone, int age, char *relative, char *money, int tam_relative, int tam_money)
+        : cCliente (comer, code, direccion, tam_comer, tam_cod, tam_direccion)
+        , cPersona (name, adress, mail, phone, tam_nom, tam_adress, tam_mail, tam_phone, age)
 {
     cCliente::fecha.actualizarFecha();
-    llenado_nullptr();
+    llenar_nullptr();
 
     if(llenado_afiliado(relative, tam_relative))
     {
@@ -76,7 +78,7 @@ bool cTercero::asignar_valores(const cTercero &obj)
     bool flag = true;
 
     cCliente::fecha.actualizarFecha();
-    llenado_nullptr();
+    llenar_nullptr();
 
     if(llenado_afiliado(obj.afiliado, size_afiliado))
     {
@@ -99,7 +101,7 @@ bool cTercero::asignar_valores(const cTercero &obj)
     return flag;
 }
 
-void cTercero::llenado_nullptr()
+void cTercero::llenar_nullptr()
 {
     factura = nullptr;
     afiliado = nullptr;

@@ -17,10 +17,10 @@ protected: //atributos
 
 public:
     virtual ~cPersona();
-    cPersona();
-    cPersona(char* name, char *adress, char *mail, char *phone, int tam_nom,
+    explicit cPersona();
+    explicit cPersona(char* name, char *adress, char *mail, char *phone, int tam_nom,
              int tam_adress, int tam_mail,int tam_phone, int age);
-    cPersona(const cPersona& obj);
+    explicit cPersona(const cPersona& obj);
     cPersona& operator=(const cPersona& obj);
 
     virtual void print();

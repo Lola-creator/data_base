@@ -10,8 +10,8 @@ class cEmpresa : public cCliente
     public:
         cEmpresa();
 		cEmpresa(char*razon, char*contact, char*id, char*paper, int tam_razon, int tam_contact,
-                int tam_id, int tam_paper, float less_money,char *name , char *code ,
-                char *direccion, int tam_nom, int tam_cod, int tam_direccion);
+                int tam_id, int tam_paper, float less_money, char*comer, char *code,
+                char *direccion,int tam_comer,int tam_cod, int tam_direccion);
 		cEmpresa(const cEmpresa &obj);
 		cEmpresa& operator=(const cEmpresa &obj);
         ~cEmpresa();

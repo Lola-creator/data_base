@@ -3,14 +3,17 @@
 
 #include "cFecha.hpp"
 #include "cCliente.hpp"
+#include "cPersona.hpp"
+#include "cFecha.hpp"
 
-class cTercero : public cCliente
+class cTercero : public cCliente, cPersona
 {
 
     public:
         explicit cTercero();
-        explicit cTercero(char *name , char *code , char *direccion, int tam_nom, int tam_cod, int tam_direccion,
-                          char *relative, char *money, int tam_relative, int tam_money);
+        explicit cTercero(char* comer, char *code, char *direccion,int tam_comer,int tam_cod, int tam_direccion,
+                          char* name, char *adress, char *mail, char *phone, int tam_nom, int tam_adress,
+                          int tam_mail,int tam_phone, int age, char *relative, char *money, int tam_relative, int tam_money);
         cTercero(const cTercero &obj);
 		cTercero& operator=(const cTercero &obj);
         ~cTercero();
@@ -33,7 +36,7 @@ class cTercero : public cCliente
         int size_afiliado;
 
         bool asignar_valores(const cTercero &obj);
-        bool llenar_nullptr();
+        void llenar_nullptr();
 };
 
 #endif
